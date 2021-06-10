@@ -1,0 +1,73 @@
+
+/*
+* https://remixicon.com
+* https://github.com/Remix-Design/RemixIcon
+* Copyright RemixIcon.com
+* Released under the Apache License Version 2.0
+*/
+
+@font-face {
+    font-family: "remixicon";
+    src: url('remixicon.eot?t=1623360796550'); /* IE9*/
+    src: url('remixicon.eot?t=1623360796550#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url("remixicon.woff2?t=1623360796550") format("woff2"),
+    url("remixicon.woff?t=1623360796550") format("woff"),
+    url('remixicon.ttf?t=1623360796550') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+    url('remixicon.svg?t=1623360796550#remixicon') format('svg'); /* iOS 4.1- */
+    font-display: swap;
+}
+
+[class^="ri-"], [class*="ri-"] {
+    font-family: 'remixicon' !important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.ri-lg { font-size: 1.3333em; line-height: 0.75em; vertical-align: -.0667em; }
+.ri-xl { font-size: 1.5em; line-height: 0.6666em; vertical-align: -.075em; }
+.ri-xxs { font-size: .5em; }
+.ri-xs { font-size: .75em; }
+.ri-sm { font-size: .875em }
+.ri-1x { font-size: 1em; }
+.ri-2x { font-size: 2em; }
+.ri-3x { font-size: 3em; }
+.ri-4x { font-size: 4em; }
+.ri-5x { font-size: 5em; }
+.ri-6x { font-size: 6em; }
+.ri-7x { font-size: 7em; }
+.ri-8x { font-size: 8em; }
+.ri-9x { font-size: 9em; }
+.ri-10x { font-size: 10em; }
+.ri-fw { text-align: center; width: 1.25em; }
+
+.ri-shopping-cart-2-line:before { content: "\f11e"; }
+.ri-shopping-bag-line:before { content: "\f118"; }
+.ri-shopping-bag-3-line:before { content: "\f116"; }
+.ri-heart-line:before { content: "\ee0f"; }
+.ri-sun-line:before { content: "\f1bf"; }
+.ri-moon-line:before { content: "\ef75"; }
+.ri-filter-2-line:before { content: "\ed23"; }
+.ri-delete-bin-line:before { content: "\ec2a"; }
+.ri-upload-line:before { content: "\f250"; }
+.ri-check-line:before { content: "\eb7b"; }
+.ri-add-line:before { content: "\ea13"; }
+.ri-close-line:before { content: "\eb99"; }
+.ri-subtract-line:before { content: "\f1af"; }
+.ri-arrow-right-line:before { content: "\ea6c"; }
+.ri-arrow-up-line:before { content: "\ea76"; }
+.ri-arrow-left-line:before { content: "\ea60"; }
+.ri-arrow-down-line:before { content: "\ea4c"; }
+.ri-arrow-up-s-line:before { content: "\ea78"; }
+.ri-arrow-down-s-line:before { content: "\ea4e"; }
+.ri-arrow-right-s-line:before { content: "\ea6e"; }
+.ri-arrow-left-s-line:before { content: "\ea64"; }
+.ri-user-3-line:before { content: "\f256"; }
+.ri-map-pin-line:before { content: "\ef14"; }
+.ri-facebook-line:before { content: "\ecbd"; }
+.ri-google-line:before { content: "\edd5"; }
+.ri-linkedin-line:before { content: "\eeb6"; }
+.ri-github-fill:before { content: "\edca"; }
+.ri-twitter-fill:before { content: "\f23a"; }
+.ri-phone-line:before { content: "\efec"; }
+.ri-mail-line:before { content: "\eef6"; }
