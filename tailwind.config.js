@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors');
+
 module.exports = {
   mode: 'jit',
   purge: ['./pages/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}'],
@@ -8,6 +10,10 @@ module.exports = {
       padding: {
         DEFAULT: '1rem',
       },
+    },
+    colors: {
+      ...colors,
+      theme_gray: '#f5f6f9',
     },
     extend: {},
   },
