@@ -12,7 +12,7 @@ class MyDocument extends Document {
         <Head>
           {/* Temporary Blocking the site to index */}
           <meta name="robots" content="noindex" />
-          <meta name="theme-color" content="#99f0f5" />
+          <meta name="theme-color" content="#1CE2D8" />
 
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
           <link

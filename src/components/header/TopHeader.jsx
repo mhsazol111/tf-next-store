@@ -2,24 +2,24 @@ import Image from 'next/image';
 import styles from '../../assets/scss/header.module.scss';
 
 const TopHeader = () => {
-  console.log('top header');
+  console.log('');
   return (
-    <div className={`${styles.top_header} bg-theme_gray text-[#777] text-[13px] py-1`}>
+    <div className={`${styles.top_header} bg-theme_gray text-[#777] text-sm py-1 z-20`}>
       <div className="container">
         <div className="flex justify-between">
           <div className="left_col flex items-center">
-            <a href="tel:123456" className="flex items-center mr-5">
+            <a href="tel:123456" className="flex items-center mr-5 hover:text-theme_green">
               <i className="ri-phone-line" />
               <span className="block ml-1">Call: +1234567890</span>
             </a>
-            <a href="mailto:example@email.com" className="flex items-center">
+            <a href="mailto:example@email.com" className="flex items-center hover:text-theme_green">
               <i className="ri-mail-line" />
               <span className="block ml-1">example@email.com</span>
             </a>
           </div>
           <div className="right_col flex items-center justify-items-end">
             <div className="top_header_dropdown relative group mr-3">
-              <a href="/" className="block w-full px-2 py-1 hover:bg-theme_gray">
+              <a href="/" className="flex items-center w-full px-2 py-1 hover:bg-theme_gray">
                 <span className="mr-1">USD</span>
                 <i className="ri-arrow-down-s-line" />
               </a>
@@ -66,9 +66,12 @@ const TopHeader = () => {
 
             <button
               type="button"
-              className="group bg-white text-black rounded-full flex justify-center items-center h-7 w-7 transition-all ease-in-out hover:bg-green-300"
+              className="group bg-white rounded-full flex items-center pl-[3px] pr-2 py-[3px] transition-all ease-in-out hover:bg-theme_green"
             >
-              <i className="ri-user-3-line transition-all ease-in-out group-hover:text-white text-base" />
+              <span className="bg-theme_gray rounded-full flex w-6 h-6 items-center justify-center transition-all ease-in-out group-hover:bg-white ">
+                <i className="ri-user-3-line transition-all ease-in-out text-black text-base" />
+              </span>
+              <span className="ml-2 transition-all ease-in-out group-hover:text-white">Login</span>
             </button>
           </div>
         </div>
