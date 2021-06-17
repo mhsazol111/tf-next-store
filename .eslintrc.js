@@ -11,6 +11,7 @@ module.exports = {
     'prettier',
     'plugin:react/recommended',
     'plugin:jsx-a11y/recommended',
+    'next',
   ],
   parserOptions: {
     ecmaFeatures: {
