@@ -1,7 +1,7 @@
-import { useState, useRef } from 'react';
+import { Fragment } from 'react';
+import { Menu, Transition } from '@headlessui/react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import useOutsideClick from '../../../hooks/useOutsideClick';
 
 import MenuIcon from '../../../../public/images/icons/menu.svg';
 import Shirt from '../../../../public/images/icons/shirt.svg';
@@ -15,15 +15,6 @@ import Health from '../../../../public/images/icons/healthcare.svg';
 import AutoMobile from '../../../../public/images/icons/car.svg';
 
 const CategoryDropdown = () => {
-  const [categoryOpen, setCategoryOpen] = useState(false);
-  const categoryBtnRef = useRef(null);
-
-  useOutsideClick(categoryBtnRef, categoryOpen, setCategoryOpen);
-
-  const handleCategoryToggle = () => {
-    setCategoryOpen(!categoryOpen);
-  };
-
   const categoryItems = [
     { title: 'Fashion', url: 'fashion', icon: <Shirt /> },
     { title: 'Gifts', url: 'gifts', icon: <Gifts /> },
@@ -40,41 +31,55 @@ const CategoryDropdown = () => {
   ];
 
   return (
-    <div className="category_nav relative">
-      <button
-        ref={categoryBtnRef}
-        type="button"
-        onClick={handleCategoryToggle}
-        className="category_nav_button group bg-theme_gray flex items-center py-2 px-4 rounded-lg transition ease-in-out duration-200 hover:bg-theme_green hover:text-white"
-      >
-        <motion.span
-          animate={{ rotate: 360 }}
-          transition={{ repeat: Infinity, duration: 2 }}
-          className="svg_icon w-[1rem]"
+    <>
+      <Menu as="div" className="category_nav relative">
+        <Menu.Button
+          type="button"
+          className="category_nav_button group bg-theme_gray flex items-center py-2 px-4 mb-[8px] rounded-lg transition ease-in-out duration-200 hover:bg-theme_green hover:text-white focus:outline-none focus-visible:rounded focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75"
         >
-          <MenuIcon />
-        </motion.span>
-        <span className="ml-2">Browse Categories</span>
-      </button>
-      <div
-        className={`
-          category_dropdown_wrapper bg-white absolute top-12 shadow-lg rounded-lg py-3 transition-all ease-in duration-200 transform ${
-            categoryOpen ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0'
-          } origin-top `}
-      >
-        {categoryItems &&
-          categoryItems.map((item) => (
-            <div key={item.title} className="category_dropdown_item">
-              <Link href="/">
-                <a className="flex items-center min-w-[18rem] px-4 py-2 transition-all ease-in duration-200 hover:text-theme_green hover:bg-theme_green-100">
-                  <span className="svg_icon w-5 mr-2">{item.icon}</span>
-                  <span>{item.title}</span>
-                </a>
-              </Link>
-            </div>
-          ))}
-      </div>
-    </div>
+          <motion.span
+            animate={{ rotate: 360 }}
+            transition={{ repeat: Infinity, duration: 2 }}
+            className="svg_icon w-[1rem]"
+          >
+            <MenuIcon />
+          </motion.span>
+          <span className="ml-2">Browse Categories</span>
+        </Menu.Button>
+
+        <Transition
+          as={Fragment}
+          enter="transition duration-150 ease-in"
+          enterFrom="transform scale-y-0 opacity-0"
+          enterTo="transform scale-y-100 opacity-100"
+          leave="transition duration-150 ease-in"
+          leaveFrom="transform scale-y-100 opacity-100"
+          leaveTo="transform scale-y-0 opacity-0"
+        >
+          <Menu.Items className="category_dropdown_wrapper absolute top-12 bg-white transform origin-top shadow-lg rounded-lg py-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75">
+            {categoryItems &&
+              categoryItems.map((item) => (
+                <Menu.Item key={item.title}>
+                  {({ active }) => (
+                    <div className="category_dropdown_item">
+                      <Link href="/">
+                        <a
+                          className={`flex items-center min-w-[18rem] px-4 py-2 transition-all ease-in duration-200 hover:text-theme_green hover:bg-theme_green-100 ${
+                            active && 'text-theme_green bg-theme_gray'
+                          }`}
+                        >
+                          <span className="svg_icon w-5 mr-2">{item.icon}</span>
+                          <span>{item.title}</span>
+                        </a>
+                      </Link>
+                    </div>
+                  )}
+                </Menu.Item>
+              ))}
+          </Menu.Items>
+        </Transition>
+      </Menu>
+    </>
   );
 };
 

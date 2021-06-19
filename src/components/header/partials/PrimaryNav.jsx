@@ -67,15 +67,15 @@ const PrimaryNav = () => {
             >
               {item.url ? (
                 <Link href={item.url}>
-                  <a className="block">{item.title}</a>
+                  <a className="block pb-4">{item.title}</a>
                 </Link>
               ) : (
-                <>
-                  <span className="block cursor-pointer">{item.title}</span>
+                <span className="block pb-4 cursor-pointer">
+                  {item.title}
                   <span className="svg_icon w-[.6rem] ml-[.5rem] mt-[2px]">
                     <Arrow />
                   </span>
-                </>
+                </span>
               )}
 
               {item.children && (

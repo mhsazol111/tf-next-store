@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import Navigation from './Navigation';
 
 import ArrowDown from '../../../public/images/icons/down-arrow.svg';
 import HeartIcon from '../../../public/images/icons/heart.svg';
@@ -16,7 +15,7 @@ const MainHeader = () => (
         <div className="flex justify-between">
           <div className="logo_container w-[110px]">
             <Link href="/">
-              <a className="flex items-center">
+              <a className="flex items-center focus:outline-none focus-visible:rounded focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-offset-4 focus-visible:ring-offset-white focus-visible:ring-opacity-75">
                 <Image
                   src="/images/next-store-logo.svg"
                   width={135}
@@ -65,7 +64,7 @@ const MainHeader = () => (
           <div className="header_right_icons flex items-center justify-end">
             <div className="header_icon_wrap">
               <Link href="/wishlist">
-                <a className="relative flex group">
+                <a className="relative flex group focus:outline-none focus-visible:rounded focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-offset-4 focus-visible:ring-offset-white focus-visible:ring-opacity-75">
                   <span className="svg_icon w-[2rem] group-hover:text-theme_green">
                     <HeartIcon />
                   </span>
@@ -77,7 +76,7 @@ const MainHeader = () => (
             </div>
             <div className="header_icon_wrap ml-6">
               <Link href="/cart">
-                <a className="relative flex group">
+                <a className="relative flex group focus:outline-none focus-visible:rounded focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-offset-4 focus-visible:ring-offset-white focus-visible:ring-opacity-75">
                   <span className="svg_icon w-[2rem] group-hover:text-theme_green">
                     <CartIcon />
                   </span>
@@ -92,7 +91,6 @@ const MainHeader = () => (
         </div>
       </div>
     </div>
-    <Navigation />
   </>
 );
 
