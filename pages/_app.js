@@ -17,10 +17,8 @@ function MyApp({ Component, pageProps }) {
 
       <div id="page_container" className="overflow-hidden bg-theme_blue">
         <Header />
-        <div className="main_content lg:px-[5rem] px-[15px]">
-          <div className="main_content_inner">
-            <Component {...pageProps} />
-          </div>
+        <div className="main_content">
+          <Component {...pageProps} />
         </div>
       </div>
     </>

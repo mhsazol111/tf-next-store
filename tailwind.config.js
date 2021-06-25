@@ -26,6 +26,10 @@ module.exports = {
           200: '#c5fffb',
           100: '#e8fffd',
         },
+        theme_pink: {
+          DEFAULT: '#fbd1d1',
+          400: '#fdebec',
+        },
       },
     },
   },

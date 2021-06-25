@@ -1,11 +1,10 @@
-const Home = () => {
-  console.log('home page');
-  return (
-    <main className="h-screen">
-      <h1>This is home page</h1>
-      <h1>This is home page</h1>
-      <h1>This is home page</h1>
-    </main>
-  );
-};
+import HomeProductSlider from '../src/components/HomeProductSlider';
+
+const Home = () => (
+  <div className="section section__home_slider bg-white pt-6">
+    <div className="container">
+      <HomeProductSlider />
+    </div>
+  </div>
+);
 export default Home;
