@@ -1,7 +1,11 @@
 import Carousel from 'react-multi-carousel';
 import Link from 'next/link';
 import Image from 'next/image';
+import CustomButtonGroupAsArrows from './CustomButtonGroupAsArrows';
+
 import 'react-multi-carousel/lib/styles.css';
+import style from '../assets/scss/home.module.scss';
+import CustomDots from './CustomDots';
 
 const HomeProductSlider = () => {
   const responsive = {
@@ -39,14 +43,25 @@ const HomeProductSlider = () => {
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, enim est utcommodi eaque quaerat corrupti. Ut placeat ullam',
       url: '/',
       imageUrl: 'product-3.png',
-      bgColor: 'bg-green-50',
-      roundColor: 'bg-green-100',
+      bgColor: 'bg-theme_green-100',
+      roundColor: 'bg-theme_green-300',
     },
   ];
 
   return (
-    <div className="slider">
-      <Carousel responsive={responsive} infinite showDots>
+    <div className="slider rounded-3xl overflow-hidden">
+      <Carousel
+        responsive={responsive}
+        infinite
+        showDots
+        // renderDotsOutside
+        customDot={<CustomDots />}
+        dotListClass={style.home_slider_dots}
+        arrows={false}
+        customButtonGroup={<CustomButtonGroupAsArrows />}
+        // renderButtonGroupOutside
+        className="relative"
+      >
         {slider.map((slide) => (
           <div
             key={slide.id}

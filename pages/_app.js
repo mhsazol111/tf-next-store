@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }) {
 
       <NextNprogress color="#1CE2D8" startPosition={0.3} stopDelayMs={200} height={3} />
 
-      <div id="page_container" className="overflow-hidden bg-theme_blue">
+      <div id="page_container" className="overflow-hidden">
         <Header />
         <div className="main_content">
           <Component {...pageProps} />

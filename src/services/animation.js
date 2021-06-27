@@ -1,3 +1,5 @@
+export const ease = [0.6, 0.01, -0.05, 0.7];
+
 export const dropdownWrapperAnimation = {
   initial: { opacity: 0, scaleY: 0 },
   animate: {
