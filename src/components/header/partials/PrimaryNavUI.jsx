@@ -98,7 +98,7 @@ const PrimaryNavUI = () => {
                         animate="animate"
                         exit="exit"
                         variants={dropdownWrapperAnimation}
-                        className="sub-menu absolute top-10 bg-white shadow-lg rounded-lg py-2 transform origin-top focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75"
+                        className="sub-menu absolute top-10 bg-white shadow-lg rounded-lg py-2 transform origin-top ring-2 ring-theme_green ring-opacity-75 focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75"
                       >
                         {item.children.map((child) => (
                           <Menu.Item

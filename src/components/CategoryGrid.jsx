@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
+import InView from './utilities/inView';
+import { ease } from '../services/animation';
 
 import style from '../assets/scss/home.module.scss';
-import { ease } from '../services/animation';
 
 const CategoryGrid = () => {
   const categories = [
@@ -39,7 +40,7 @@ const CategoryGrid = () => {
     },
   ];
   return (
-    <motion.div
+    <InView
       variants={{
         initial: { opacity: 0 },
         animate: {
@@ -47,26 +48,27 @@ const CategoryGrid = () => {
           transition: { staggerChildren: 0.1, when: 'beforeChildren' },
         },
       }}
-      initial="initial"
-      animate="animate"
       className="flex -mx-4"
     >
       {categories &&
         categories.map((cat) => (
           <Link key={cat.id} href={`/category/${cat.url}`} passHref>
-            <motion.a
-              variants={{
-                initial: { opacity: 0, y: 20 },
-                animate: {
-                  opacity: 1,
-                  y: 0,
-                  transition: { ease, duration: 0.8, when: 'beforeChildren' },
-                },
-              }}
-              className={`${style.category_grid_item} block w-full lg:w-1/3 px-4`}
-            >
-              <div
-                className={`${style.category_grid_item_wrapper} rounded-2xl py-1 px-6 min-h-[14rem] flex items-center ${cat.backgroundColor} transition-shadow duration-500 ease-in-out`}
+            <a className={`${style.category_grid_item} block w-full lg:w-1/3 px-4`}>
+              <motion.div
+                variants={{
+                  initial: { opacity: 0, y: 20 },
+                  animate: {
+                    opacity: 1,
+                    y: 0,
+                    transition: { ease, duration: 0.8, when: 'beforeChildren' },
+                  },
+                }}
+                whileHover={{
+                  scale: 1.02,
+                  boxShadow: '0 8px 30px -5px rgba(0, 0, 0, .10)',
+                  transition: { duration: 0.3 },
+                }}
+                className={`rounded-2xl py-1 px-6 min-h-[14rem] flex items-center ${cat.backgroundColor}`}
               >
                 <div className="category_grid_item_wrapper flex items-center flex-wrap">
                   <motion.div
@@ -109,11 +111,11 @@ const CategoryGrid = () => {
                     />
                   </motion.div>
                 </div>
-              </div>
-            </motion.a>
+              </motion.div>
+            </a>
           </Link>
         ))}
-    </motion.div>
+    </InView>
   );
 };
 

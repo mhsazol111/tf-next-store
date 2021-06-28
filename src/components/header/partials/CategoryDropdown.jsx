@@ -59,7 +59,7 @@ const CategoryDropdown = () => {
                   animate="animate"
                   exit="exit"
                   variants={dropdownWrapperAnimation}
-                  className="category_dropdown_wrapper absolute top-12 bg-white transform origin-top shadow-lg rounded-lg py-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75"
+                  className="category_dropdown_wrapper absolute top-12 bg-white transform origin-top shadow-lg rounded-lg py-3 ring-2 ring-theme_green ring-opacity-75 focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75"
                 >
                   {categoryItems &&
                     categoryItems.map((item) => (

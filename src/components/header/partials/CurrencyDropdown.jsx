@@ -29,7 +29,7 @@ const CurrencyDropdown = () => {
                 animate="animate"
                 exit="exit"
                 variants={dropdownWrapperAnimation}
-                className="top_header_menu absolute w-full top-[32px] bg-white transform origin-top rounded-md py-2 shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75"
+                className="top_header_menu absolute w-full top-[32px] bg-white transform origin-top rounded-md py-2 shadow-md ring-2 ring-theme_green ring-opacity-75 focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75"
               >
                 {currencies &&
                   currencies.map((currency) => (

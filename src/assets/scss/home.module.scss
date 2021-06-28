@@ -1,8 +1,8 @@
 .home_slider_dots {
-  justify-content: flex-start;
-  left: 3rem;
-  right: initial;
-  bottom: 1.25rem;
+  justify-content: flex-start !important;
+  left: 3rem !important;
+  right: initial !important;
+  bottom: 1.25rem !important;
   li {
     margin-right: 1rem;
     width: 22px;
@@ -23,8 +23,4 @@
       border-color: #666;
     }
   }
-}
-
-.category_grid_item_wrapper:hover {
-  box-shadow: 0 8px 30px -5px rgb(0 0 0 / 10%)
 }
