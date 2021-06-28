@@ -79,9 +79,9 @@ const HomeProductSlider = () => {
             <div className="product_slider_item_inner">
               <motion.div
                 variants={{ animate: { transition: { staggerChildren: 0.1 } } }}
-                className="flex items-center"
+                className="flex flex-wrap-reverse lg:flex-wrap items-center justify-center"
               >
-                <div className="w-1/2">
+                <div className="w-full lg:w-1/2">
                   <motion.h1
                     variants={{
                       initial: { opacity: 0, y: 20 },
@@ -113,7 +113,7 @@ const HomeProductSlider = () => {
                     </motion.a>
                   </Link>
                 </div>
-                <div className="w-1/2">
+                <div className="w-full lg:w-1/2">
                   <motion.div
                     variants={{
                       initial: { opacity: 0, y: 20 },

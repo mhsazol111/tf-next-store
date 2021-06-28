@@ -4,8 +4,6 @@ import Image from 'next/image';
 import InView from './utilities/inView';
 import { ease } from '../services/animation';
 
-import style from '../assets/scss/home.module.scss';
-
 const CategoryGrid = () => {
   const categories = [
     {
@@ -48,13 +46,13 @@ const CategoryGrid = () => {
           transition: { staggerChildren: 0.1, when: 'beforeChildren' },
         },
       }}
-      className="flex -mx-4"
+      className="flex flex-wrap -mx-4"
     >
       {categories &&
         categories.map((cat) => (
-          <Link key={cat.id} href={`/category/${cat.url}`} passHref>
-            <a className={`${style.category_grid_item} block w-full lg:w-1/3 px-4`}>
-              <motion.div
+          <div key={cat.id} className="block w-full lg:w-1/3 px-4 mb-5 lg:mb-0">
+            <Link href={`/category/${cat.url}`} passHref>
+              <motion.a
                 variants={{
                   initial: { opacity: 0, y: 20 },
                   animate: {
@@ -68,7 +66,12 @@ const CategoryGrid = () => {
                   boxShadow: '0 8px 30px -5px rgba(0, 0, 0, .10)',
                   transition: { duration: 0.3 },
                 }}
-                className={`rounded-2xl py-1 px-6 min-h-[14rem] flex items-center ${cat.backgroundColor}`}
+                whileFocus={{
+                  scale: 1.02,
+                  boxShadow: '0 8px 30px -5px rgba(0, 0, 0, .10)',
+                  transition: { duration: 0.3 },
+                }}
+                className={`rounded-3xl py-1 px-6 min-h-[14rem] flex items-center focus:outline-none ${cat.backgroundColor}`}
               >
                 <div className="category_grid_item_wrapper flex items-center flex-wrap">
                   <motion.div
@@ -111,9 +114,9 @@ const CategoryGrid = () => {
                     />
                   </motion.div>
                 </div>
-              </motion.div>
-            </a>
-          </Link>
+              </motion.a>
+            </Link>
+          </div>
         ))}
     </InView>
   );

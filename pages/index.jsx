@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import InView from '../src/components/utilities/inView';
 import HomeProductSlider from '../src/components/HomeProductSlider';
 import CategoryGrid from '../src/components/CategoryGrid';
 import dummyProducts from '../src/services/dummyProducts';
@@ -16,19 +16,19 @@ const Home = () => (
         <CategoryGrid />
       </div>
     </div>
-    <div className="section section__latest_product">
+
+    <div className="section section__latest_product bg-theme_blue py-20">
       <div className="container">
-        <div className="flex">
-          <h2>Latest Products</h2>
+        <div className="flex pb-5">
+          <h2 className="text-3xl">Latest Products</h2>
         </div>
-        <motion.div className="product_grid flex">
+        <InView
+          variants={{ animate: { transition: { when: 'beforeChildren', staggerChildren: 0.15 } } }}
+          className="product_grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"
+        >
           {dummyProducts &&
-            dummyProducts.map((product) => (
-              <div key={product.id} className="w-1/5">
-                <ProductItem product={product} />
-              </div>
-            ))}
-        </motion.div>
+            dummyProducts.map((product) => <ProductItem key={product.id} product={product} />)}
+        </InView>
       </div>
     </div>
   </>
