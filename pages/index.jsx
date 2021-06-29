@@ -3,6 +3,8 @@ import HomeProductSlider from '../src/components/HomeProductSlider';
 import CategoryGrid from '../src/components/CategoryGrid';
 import dummyProducts from '../src/services/dummyProducts';
 import ProductItem from '../src/components/ProductItem';
+import OfferGrid from '../src/components/OfferGrid';
+import InteractiveIcon from '../src/components/utilities/InterativeIcon';
 
 const Home = () => (
   <>
@@ -34,6 +36,18 @@ const Home = () => (
           {dummyProducts &&
             dummyProducts.map((product) => <ProductItem key={product.id} product={product} />)}
         </InView>
+      </div>
+    </div>
+
+    <div className="section section__offer_grids py-20">
+      <div className="container">
+        <OfferGrid />
+      </div>
+    </div>
+
+    <div className="section section__offer_grids py-20">
+      <div className="container">
+        <InteractiveIcon />
       </div>
     </div>
   </>

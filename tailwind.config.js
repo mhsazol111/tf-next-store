@@ -31,6 +31,11 @@ module.exports = {
           400: '#fdebec',
         },
       },
+      backgroundSize: {
+        half: '50%',
+        full: '100%',
+        twice: '150%',
+      },
     },
   },
   corePlugins: {

@@ -46,11 +46,11 @@ const CategoryGrid = () => {
           transition: { staggerChildren: 0.1, when: 'beforeChildren' },
         },
       }}
-      className="flex flex-wrap -mx-4"
+      className="grid grid-cols-1 lg:grid-cols-3 grid-rows-1 gap-4"
     >
       {categories &&
         categories.map((cat) => (
-          <div key={cat.id} className="block w-full lg:w-1/3 px-4 mb-5 lg:mb-0">
+          <div key={cat.id} className="block w-full">
             <Link href={`/category/${cat.url}`} passHref>
               <motion.a
                 variants={{
