@@ -1,5 +1,6 @@
 import NextNprogress from 'nextjs-progressbar';
 import Head from 'next/head';
+import { ViewportProvider } from '../src/context/ViewPortContext';
 import Header from '../src/components/header/Header';
 
 import '../src/assets/scss/globals.scss';
@@ -15,12 +16,14 @@ function MyApp({ Component, pageProps }) {
 
       <NextNprogress color="#1CE2D8" startPosition={0.3} stopDelayMs={200} height={3} />
 
-      <div id="page_container" className="overflow-hidden">
-        <Header />
-        <div className="main_content">
-          <Component {...pageProps} />
+      <ViewportProvider>
+        <div id="page_container" className="overflow-hidden">
+          <Header />
+          <div className="main_content">
+            <Component {...pageProps} />
+          </div>
         </div>
-      </div>
+      </ViewportProvider>
     </>
   );
 }

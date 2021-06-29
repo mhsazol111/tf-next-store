@@ -22,7 +22,7 @@ const CategoryGrid = () => {
       backgroundColor: 'bg-yellow-100',
       title: 'Face Mask',
       details: 'A classic hydration treatment',
-      imgUrl: 'product-5.png',
+      imgUrl: 'product-14.png',
       width: 350,
       height: 350,
     },
@@ -32,9 +32,9 @@ const CategoryGrid = () => {
       backgroundColor: 'bg-pink-200',
       title: 'Natural Oil',
       details: 'Protect against environmental irritants',
-      imgUrl: 'product-4.png',
-      width: 114,
-      height: 200,
+      imgUrl: 'product-5.png',
+      width: 350,
+      height: 350,
     },
   ];
   return (
@@ -58,7 +58,7 @@ const CategoryGrid = () => {
                   animate: {
                     opacity: 1,
                     y: 0,
-                    transition: { ease, duration: 0.8, when: 'beforeChildren' },
+                    transition: { ease, duration: 0.6, when: 'beforeChildren' },
                   },
                 }}
                 whileHover={{
