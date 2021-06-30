@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import style from '../assets/scss/home.module.scss';
+import style from '../../assets/scss/home.module.scss';
 
 const CustomDots = ({ onClick, active }) => (
   <motion.li

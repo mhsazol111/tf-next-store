@@ -48,7 +48,7 @@ const OfferGrid = () => (
               initial: { opacity: 0, y: 10 },
               animate: { opacity: 1, y: 0, transition: { duration: 0.4 } },
             }}
-            className="inline-block pt-10 lg:pt-24 font-semibold underline hover:text-gray-500"
+            className="inline-block mt-10 lg:mt-24 px-2 py-1 rounded-lg font-semibold underline hover:text-gray-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75"
           >
             Shop Now
           </motion.a>
@@ -127,7 +127,7 @@ const OfferGrid = () => (
               initial: { opacity: 0, y: 10 },
               animate: { opacity: 1, y: 0, transition: { duration: 0.4 } },
             }}
-            className="inline-block pt-10 font-semibold underline hover:text-gray-500"
+            className="inline-block mt-10 font-semibold underline px-2 py-1 rounded-lg hover:text-gray-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75"
           >
             Shop Now
           </motion.a>

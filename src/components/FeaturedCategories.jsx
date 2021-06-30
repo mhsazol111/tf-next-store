@@ -4,7 +4,7 @@ import Image from 'next/image';
 import InView from './utilities/inView';
 import { ease } from '../services/animation';
 
-const CategoryGrid = () => {
+const FeaturedCategories = () => {
   const categories = [
     {
       id: 1,
@@ -19,7 +19,7 @@ const CategoryGrid = () => {
     {
       id: 2,
       url: 'skin-care',
-      backgroundColor: 'bg-yellow-100',
+      backgroundColor: 'bg-yellow-200',
       title: 'Face Mask',
       details: 'A classic hydration treatment',
       imgUrl: 'product-14.png',
@@ -122,4 +122,4 @@ const CategoryGrid = () => {
   );
 };
 
-export default CategoryGrid;
+export default FeaturedCategories;

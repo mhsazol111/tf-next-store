@@ -27,12 +27,10 @@ const dummyProducts = [
   },
   {
     id: 3,
-    title: 'Soothing Cleanser',
+    title: 'Moisturizing Lotion',
     slug: 'product-1',
     categories: ['skincare', 'facewash', 'facepack'],
-    price: 12,
-    sale_price: 10,
-    sale_percent: 10,
+    price: 30,
     rating: 5,
     imageUrl: 'product-3.png',
     imageWidth: 640,
@@ -40,7 +38,7 @@ const dummyProducts = [
   },
   {
     id: 4,
-    title: 'Soothing Cleanser',
+    title: 'Micro-Sculpting Cream',
     slug: 'product-1',
     categories: ['skincare', 'facewash', 'facepack'],
     price: 12,
@@ -53,7 +51,7 @@ const dummyProducts = [
   },
   {
     id: 5,
-    title: 'Soothing Cleanser',
+    title: 'Night Infusion Cream',
     slug: 'product-1',
     categories: ['skincare', 'facewash', 'facepack'],
     price: 12,
@@ -66,7 +64,7 @@ const dummyProducts = [
   },
   {
     id: 6,
-    title: 'Soothing Cleanser',
+    title: 'Night Moisturizer',
     slug: 'product-1',
     categories: ['skincare', 'facewash', 'facepack'],
     price: 12,
@@ -79,7 +77,7 @@ const dummyProducts = [
   },
   {
     id: 7,
-    title: 'Soothing Cleanser',
+    title: 'Restorative Cream',
     slug: 'product-1',
     categories: ['skincare', 'facewash', 'facepack'],
     price: 12,
@@ -92,7 +90,7 @@ const dummyProducts = [
   },
   {
     id: 8,
-    title: 'Gentle Skin Cleanser',
+    title: 'Renewal B3 Serum',
     slug: 'product-1',
     categories: ['skincare', 'facewash', 'facepack'],
     price: 30,
@@ -105,7 +103,7 @@ const dummyProducts = [
   },
   {
     id: 9,
-    title: 'Soothing Cleanser',
+    title: 'Intense Advanced Serum',
     slug: 'product-1',
     categories: ['skincare', 'facewash', 'facepack'],
     price: 12,
@@ -118,7 +116,7 @@ const dummyProducts = [
   },
   {
     id: 10,
-    title: 'Soothing Cleanser',
+    title: 'Repair Concentrate Serum',
     slug: 'product-1',
     categories: ['skincare', 'facewash', 'facepack'],
     price: 12,

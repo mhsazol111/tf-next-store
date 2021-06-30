@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
-import LeftArrow from '../../public/images/icons/back.svg';
-import RightArrow from '../../public/images/icons/next.svg';
+import LeftArrow from '../../../public/images/icons/back.svg';
+import RightArrow from '../../../public/images/icons/next.svg';
 
-const CustomButtonGroupAsArrows = ({ next, previous }) => (
+const CustomArrows = ({ next, previous }) => (
   <motion.div
     initial={{ opacity: 0 }}
     animate={{ opacity: 1, transition: { delay: 0.8 } }}
@@ -28,4 +28,4 @@ const CustomButtonGroupAsArrows = ({ next, previous }) => (
     </button>
   </motion.div>
 );
-export default CustomButtonGroupAsArrows;
+export default CustomArrows;

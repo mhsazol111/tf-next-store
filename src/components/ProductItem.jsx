@@ -31,8 +31,13 @@ const ProductItem = ({ product }) => (
           animate: { y: 0, opacity: 1, transition: { duration: 0.3 } },
         }}
         layout
-        className="product_image text-center"
+        className="product_image text-center relative"
       >
+        {product.sale_percent && (
+          <span className="block absolute -top-2 -left-1 text-xs bg-theme_green-200 px-2 py-1 rounded-full z-10">
+            {product.sale_percent}% off
+          </span>
+        )}
         <Image
           src={`/images/products/${product.imageUrl}`}
           width={product.imageWidth / 0.5}
