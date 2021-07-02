@@ -2,7 +2,6 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import useViewport from '../hooks/useViewport';
-import { featuredCategories } from '../services/dummyAPI';
 import { ease } from '../services/animation';
 import InView from './utilities/inView';
 
@@ -22,6 +21,39 @@ const FeaturedCategories = () => {
     }),
   };
 
+  const featuredCategories = [
+    {
+      id: 1,
+      url: 'skin-care',
+      backgroundColor: 'bg-theme_green-300',
+      title: 'Skin Care',
+      details: 'Glowing skin every minutes & seconds',
+      imgUrl: 'product-6.png',
+      width: 338,
+      height: 308,
+    },
+    {
+      id: 2,
+      url: 'skin-care',
+      backgroundColor: 'bg-yellow-200',
+      title: 'Face Mask',
+      details: 'A classic hydration treatment',
+      imgUrl: 'product-14.png',
+      width: 350,
+      height: 350,
+    },
+    {
+      id: 3,
+      url: 'skin-care',
+      backgroundColor: 'bg-pink-200',
+      title: 'Natural Oil',
+      details: 'Protect against environmental irritants',
+      imgUrl: 'product-5.png',
+      width: 350,
+      height: 350,
+    },
+  ];
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 grid-rows-1 gap-4">
       {featuredCategories &&
@@ -39,7 +71,7 @@ const FeaturedCategories = () => {
                   boxShadow: '0 8px 30px -5px rgba(0, 0, 0, .10)',
                   transition: { duration: 0.3 },
                 }}
-                className={`rounded-3xl py-1 px-6 min-h-[14rem] flex items-center focus:outline-none ${cat.backgroundColor}`}
+                className={`${cat.backgroundColor} rounded-3xl py-1 px-6 min-h-[14rem] h-full row-span-1 flex items-center focus:outline-none`}
               >
                 <div className="category_grid_item_wrapper flex items-center flex-wrap">
                   <motion.div

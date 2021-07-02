@@ -129,37 +129,4 @@ const dummyProducts = [
   },
 ];
 
-export const featuredCategories = [
-  {
-    id: 1,
-    url: 'skin-care',
-    backgroundColor: 'bg-theme_green-300',
-    title: 'Skin Care',
-    details: 'Glowing skin every minutes & seconds',
-    imgUrl: 'product-6.png',
-    width: 338,
-    height: 308,
-  },
-  {
-    id: 2,
-    url: 'skin-care',
-    backgroundColor: 'bg-yellow-200',
-    title: 'Face Mask',
-    details: 'A classic hydration treatment',
-    imgUrl: 'product-14.png',
-    width: 350,
-    height: 350,
-  },
-  {
-    id: 3,
-    url: 'skin-care',
-    backgroundColor: 'bg-pink-200',
-    title: 'Natural Oil',
-    details: 'Protect against environmental irritants',
-    imgUrl: 'product-5.png',
-    width: 350,
-    height: 350,
-  },
-];
-
 export default dummyProducts;
