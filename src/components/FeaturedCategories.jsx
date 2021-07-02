@@ -1,66 +1,34 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
-import InView from './utilities/inView';
+import useViewport from '../hooks/useViewport';
+import { featuredCategories } from '../services/dummyAPI';
 import { ease } from '../services/animation';
+import InView from './utilities/inView';
 
 const FeaturedCategories = () => {
-  const categories = [
-    {
-      id: 1,
-      url: 'skin-care',
-      backgroundColor: 'bg-theme_green-300',
-      title: 'Skin Care',
-      details: 'Glowing skin every minutes & seconds',
-      imgUrl: 'product-6.png',
-      width: 338,
-      height: 308,
-    },
-    {
-      id: 2,
-      url: 'skin-care',
-      backgroundColor: 'bg-yellow-200',
-      title: 'Face Mask',
-      details: 'A classic hydration treatment',
-      imgUrl: 'product-14.png',
-      width: 350,
-      height: 350,
-    },
-    {
-      id: 3,
-      url: 'skin-care',
-      backgroundColor: 'bg-pink-200',
-      title: 'Natural Oil',
-      details: 'Protect against environmental irritants',
-      imgUrl: 'product-5.png',
-      width: 350,
-      height: 350,
-    },
-  ];
+  const { width } = useViewport();
+  const variants = {
+    initial: { opacity: 0, y: 20 },
+    animate: (custom) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        ease,
+        duration: 0.6,
+        delay: width > 1024 ? custom * 0.1 : 0,
+        when: 'beforeChildren',
+      },
+    }),
+  };
+
   return (
-    <InView
-      variants={{
-        initial: { opacity: 0 },
-        animate: {
-          opacity: 1,
-          transition: { staggerChildren: 0.1, when: 'beforeChildren' },
-        },
-      }}
-      className="grid grid-cols-1 lg:grid-cols-3 grid-rows-1 gap-4"
-    >
-      {categories &&
-        categories.map((cat) => (
-          <div key={cat.id} className="block w-full">
+    <div className="grid grid-cols-1 lg:grid-cols-3 grid-rows-1 gap-4">
+      {featuredCategories &&
+        featuredCategories.map((cat, item) => (
+          <InView key={cat.id} variants={variants} custom={item} className="block w-full">
             <Link href={`/category/${cat.url}`} passHref>
               <motion.a
-                variants={{
-                  initial: { opacity: 0, y: 20 },
-                  animate: {
-                    opacity: 1,
-                    y: 0,
-                    transition: { ease, duration: 0.6, when: 'beforeChildren' },
-                  },
-                }}
                 whileHover={{
                   scale: 1.02,
                   boxShadow: '0 8px 30px -5px rgba(0, 0, 0, .10)',
@@ -116,9 +84,9 @@ const FeaturedCategories = () => {
                 </div>
               </motion.a>
             </Link>
-          </div>
+          </InView>
         ))}
-    </InView>
+    </div>
   );
 };
 

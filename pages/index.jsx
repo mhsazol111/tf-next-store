@@ -4,12 +4,11 @@ import { ease } from '../src/services/animation';
 import InView from '../src/components/utilities/inView';
 import HomeSlider from '../src/components/HomeSlider';
 import FeaturedCategories from '../src/components/FeaturedCategories';
-import dummyProducts from '../src/services/dummyProducts';
-import ProductItem from '../src/components/ProductItem';
 import OfferGrid from '../src/components/OfferGrid';
 import InteractiveIcon from '../src/components/utilities/InterativeIcon';
 import PopularCategories from '../src/components/PopularCategories';
 import NewsLetter from '../src/components/NewsLetter';
+import ProductGrid from '../src/components/ProductGrid';
 
 const Home = () => (
   <>
@@ -30,7 +29,7 @@ const Home = () => (
         <InView
           variants={{
             initial: { opacity: 0 },
-            animate: { opacity: 1, transition: { when: 'beforeChildren', staggerChildren: 0.15 } },
+            animate: { opacity: 1, transition: { when: 'beforeChildren' } },
           }}
           threshold={0.1}
         >
@@ -45,11 +44,8 @@ const Home = () => (
               Latest Products
             </motion.span>
           </h2>
-          <div className="product_grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-            {dummyProducts &&
-              dummyProducts.map((product) => <ProductItem key={product.id} product={product} />)}
-          </div>
         </InView>
+        <ProductGrid />
       </div>
     </div>
 
