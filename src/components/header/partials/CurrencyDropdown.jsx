@@ -13,7 +13,7 @@ const CurrencyDropdown = () => {
     <Menu as="div" className="top_header_dropdown">
       {({ open }) => (
         <>
-          <Menu.Button className="flex items-center w-full px-2 py-1 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75">
+          <Menu.Button className="flex items-center w-full px-2 py-1 rounded hover:text-theme_green focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75">
             <span className="mr-2">{currentCurrency}</span>
             <span className="svg_icon w-[.6rem]">
               <ArrowDown />

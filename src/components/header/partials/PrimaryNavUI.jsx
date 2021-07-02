@@ -74,13 +74,13 @@ const PrimaryNavUI = () => {
                 >
                   {item.url ? (
                     <Link href={item.url}>
-                      <a className="block pb-4 focus:outline-none focus-visible:text-theme_green hover:text-theme_green">
+                      <a className="block pb-4 pt-4 focus:outline-none focus-visible:text-theme_green hover:text-theme_green">
                         {item.title}
                       </a>
                     </Link>
                   ) : (
                     <Menu.Button className="focus:outline-none focus-visible:text-theme_green hover:text-theme_green">
-                      <span className="block pb-4 cursor-pointer">
+                      <span className="block pb-4 pt-4 cursor-pointer">
                         {item.title}
                         <span className="svg_icon w-[.6rem] ml-[.5rem] mt-[2px]">
                           <Arrow />
@@ -98,7 +98,7 @@ const PrimaryNavUI = () => {
                         animate="animate"
                         exit="exit"
                         variants={dropdownWrapperAnimation}
-                        className="sub-menu absolute top-10 bg-white shadow-lg rounded-lg py-2 transform origin-top ring-2 ring-theme_green ring-opacity-75 focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75"
+                        className="sub-menu absolute top-14 bg-white shadow-lg rounded-lg py-2 transform origin-top ring-2 ring-theme_green ring-opacity-75 focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75"
                       >
                         {item.children.map((child) => (
                           <Menu.Item

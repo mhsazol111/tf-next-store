@@ -12,7 +12,7 @@ import ProductGrid from '../src/components/ProductGrid';
 
 const Home = () => (
   <>
-    <div className="section section__home_slider bg-white pt-6 pb-10">
+    <div className="section section__home_slider bg-white pt-4 pb-4">
       <div className="container">
         <HomeSlider />
       </div>

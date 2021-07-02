@@ -38,16 +38,15 @@ const CategoryDropdown = () => {
           <>
             <Menu.Button
               type="button"
-              className="category_nav_button group bg-theme_gray flex items-center py-2 px-4 mb-[8px] rounded-lg transition ease-in-out duration-200 hover:bg-theme_green hover:text-white focus:outline-none focus-visible:rounded focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75"
+              className="category_nav_button group bg-yellow-200 flex items-center p-2 rounded-lg hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-offset-2 focus-visible:ring-opacity-75"
             >
               <motion.span
                 animate={{ rotate: 360 }}
                 transition={{ repeat: Infinity, duration: 2 }}
-                className="svg_icon w-[1rem]"
+                className="svg_icon w-[1.2rem]"
               >
                 <MenuIcon />
               </motion.span>
-              <span className="ml-2">Browse Categories</span>
             </Menu.Button>
 
             <AnimatePresence>
@@ -59,7 +58,7 @@ const CategoryDropdown = () => {
                   animate="animate"
                   exit="exit"
                   variants={dropdownWrapperAnimation}
-                  className="category_dropdown_wrapper absolute top-12 bg-white transform origin-top shadow-lg rounded-lg py-3 ring-2 ring-theme_green ring-opacity-75 focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75"
+                  className="category_dropdown_wrapper absolute right-0 top-12 bg-white transform origin-top-right shadow-lg rounded-lg py-3 ring-2 ring-theme_green ring-opacity-75 focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75"
                 >
                   {categoryItems &&
                     categoryItems.map((item) => (

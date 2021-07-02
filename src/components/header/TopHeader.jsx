@@ -7,8 +7,6 @@ import UserIcon from '../../../public/images/icons/user.svg';
 import CurrencyDropdown from './partials/CurrencyDropdown';
 import LangDropdown from './partials/LangDropdown';
 
-import styles from '../../assets/scss/header.module.scss';
-
 const TopHeader = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -21,7 +19,7 @@ const TopHeader = () => {
   };
 
   return (
-    <div className={`${styles.top_header} bg-theme_gray text-[#777] text-sm py-1 z-20 relative`}>
+    <div className="top_header bg-theme_blue text-[#777] text-[13px] py-1 z-20 relative px-4">
       <div className="container">
         <div className="flex justify-between">
           <div className="left_col flex items-center">
@@ -57,15 +55,16 @@ const TopHeader = () => {
             <button
               type="button"
               onClick={handlePopupOpen}
-              className="group bg-white rounded-full flex items-center pl-[3px] pr-2 py-[3px] transition-all ease-in-out hover:bg-theme_green focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75"
+              className="group bg-theme_green-300 rounded-full flex items-center pl-[3px] pr-2 py-[3px] transition-all ease-in-out hover:bg-theme_green focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75"
             >
-              <span className="bg-theme_gray rounded-full flex w-6 h-6 items-center justify-center transition-all ease-in-out group-hover:bg-white ">
+              <span className="bg-white rounded-full flex w-6 h-6 items-center justify-center transition-all ease-in-out group-hover:bg-white ">
                 <span className="w-[15px] svg_icon">
                   <UserIcon />
                 </span>
               </span>
               <span className="ml-2 transition-all ease-in-out group-hover:text-white">Login</span>
             </button>
+
             <LoginPopup status={isOpen} onOpen={handlePopupOpen} onClose={handlePopupClose} />
           </div>
         </div>

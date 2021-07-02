@@ -1,97 +1,68 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import CategoryDropdown from './partials/CategoryDropdown';
+import Navigation from './Navigation';
 
-import ArrowDown from '../../../public/images/icons/down-arrow.svg';
 import HeartIcon from '../../../public/images/icons/heart.svg';
 import CartIcon from '../../../public/images/icons/cart.svg';
 import SearchIcon from '../../../public/images/icons/search.svg';
 
-import styles from '../../assets/scss/header.module.scss';
-
 const MainHeader = () => (
-  <>
-    <div className={`${styles.main_header} relative text-[#777] pt-2 pb-5 z-[19]`}>
-      <div className="container">
-        <div className="flex justify-between">
-          <div className="logo_container w-[110px]">
-            <Link href="/">
-              <a className="flex items-center focus:outline-none focus-visible:rounded focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-offset-4 focus-visible:ring-offset-white focus-visible:ring-opacity-75">
-                <Image
-                  src="/images/next-store-logo.svg"
-                  width={135}
-                  height={70}
-                  alt="Next Store Logo"
-                />
+  <div className="main_header relative text-[#777] pt-2 z-[19]">
+    <div className="container">
+      <div className="flex justify-between items-center">
+        <div className="logo_container w-[90px] -mt-2">
+          <Link href="/">
+            <a className="flex items-center focus:outline-none focus-visible:rounded focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-offset-4 focus-visible:ring-offset-white focus-visible:ring-opacity-75">
+              <Image
+                src="/images/next-store-logo.svg"
+                width={135}
+                height={70}
+                alt="Next Store Logo"
+              />
+            </a>
+          </Link>
+        </div>
+
+        <Navigation />
+
+        <div className="header_right_icons flex items-center justify-end">
+          <div className="header_icon_wrap mr-3">
+            <Link href="/wishlist">
+              <a className="relative bg-purple-200 text-black p-2 rounded-lg flex group focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-offset-2 focus-visible:ring-opacity-75">
+                <span className="svg_icon w-[1.2rem] group-hover:text-white">
+                  <SearchIcon />
+                </span>
               </a>
             </Link>
           </div>
-          <div className="search_wrapper flex flex-1 items-center mx-10">
-            <div className="search_wrapper_inner relative flex flex-1 max-w-[800px] items-center mx-auto">
-              <div className="search_category_wrapper relative group left-0">
-                <div className="bg-theme_gray flex items-center w-full pl-5 pr-2 h-12 rounded-l-full border-t-2 border-b-2 border-solid border-theme_gray">
-                  <span className="mr-2">All Categories</span>
-                  <span className="svg_icon w-[.7rem]">
-                    <ArrowDown />
-                  </span>
-                </div>
-                <div className="absolute w-full top-full bg-white transition-all ease-in duration-150 transform origin-top scale-y-0 opacity-0 rounded-md py-2 shadow-md group-hover:scale-y-100 group-hover:opacity-100">
-                  <div className="block w-full px-3 py-2 hover:bg-theme_gray">Man Clothes</div>
-                  <div className="block w-full px-3 py-2 hover:bg-theme_gray">Accessories</div>
-                  <div className="block w-full px-3 py-2 hover:bg-theme_gray">Woman Clothes</div>
-                  <div className="block w-full px-3 py-2 hover:bg-theme_gray">Shoes</div>
-                  <div className="block w-full px-3 py-2 hover:bg-theme_gray">Gifts</div>
-                </div>
-              </div>
-
-              <div className="search_input_wrap flex flex-1">
-                <input
-                  type="text"
-                  className="w-full h-12 border-t-2 border-b-2 border-solid border-theme_gray px-5 focus:outline-none"
-                  placeholder="Search Product..."
-                />
-              </div>
-
-              <button
-                type="button"
-                className="search_icon bg-theme_gray relative flex items-center justify-center h-12 w-16 border-t-2 border-b-2 border-solid border-theme_gray rounded-r-full"
-              >
-                <span className="svg_icon w-[1rem]">
-                  <SearchIcon />
+          <div className="header_icon_wrap mr-3">
+            <Link href="/wishlist">
+              <a className="relative bg-pink-200 text-black p-2 rounded-lg flex group focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-offset-2 focus-visible:ring-opacity-75">
+                <span className="svg_icon w-[1.2rem] group-hover:text-white">
+                  <HeartIcon />
                 </span>
-              </button>
-            </div>
+              </a>
+            </Link>
           </div>
-          <div className="header_right_icons flex items-center justify-end">
-            <div className="header_icon_wrap">
-              <Link href="/wishlist">
-                <a className="relative flex group focus:outline-none focus-visible:rounded focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-offset-4 focus-visible:ring-offset-white focus-visible:ring-opacity-75">
-                  <span className="svg_icon w-[2rem] group-hover:text-theme_green">
-                    <HeartIcon />
-                  </span>
-                  <span className="bg-theme_green text-white h-5 w-5 rounded-full flex items-center justify-center absolute -top-2 -right-3">
-                    0
-                  </span>
-                </a>
-              </Link>
-            </div>
-            <div className="header_icon_wrap ml-6">
-              <Link href="/cart">
-                <a className="relative flex group focus:outline-none focus-visible:rounded focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-offset-4 focus-visible:ring-offset-white focus-visible:ring-opacity-75">
-                  <span className="svg_icon w-[2rem] group-hover:text-theme_green">
-                    <CartIcon />
-                  </span>
-
-                  <span className="bg-theme_green text-white h-5 w-5 rounded-full flex items-center justify-center absolute -top-2 -right-3">
+          <div className="header_icon_wrap mr-3">
+            <Link href="/cart">
+              <a className="relative bg-theme_green-300 text-black p-2 rounded-lg flex group focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-offset-2 focus-visible:ring-opacity-75">
+                <span className="svg_icon w-[1.2rem] group-hover:text-white">
+                  <CartIcon />
+                </span>
+                {/* <span className="bg-theme_green text-white h-5 w-5 rounded-full flex items-center justify-center absolute -top-2 -right-3">
                     3
-                  </span>
-                </a>
-              </Link>
-            </div>
+                  </span> */}
+              </a>
+            </Link>
           </div>
+
+          <CategoryDropdown />
         </div>
       </div>
     </div>
-  </>
+  </div>
 );
 
 export default MainHeader;

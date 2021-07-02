@@ -18,7 +18,7 @@ const LangDropdown = () => {
     <Menu as="div" className="top_header_dropdown w-[116px]">
       {({ open }) => (
         <>
-          <Menu.Button className="flex flex-wrap items-center w-full py-1 pr-1 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75">
+          <Menu.Button className="flex flex-wrap items-center w-full py-1 pr-1 rounded hover:text-theme_green focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75">
             <Image
               src={`/images/icons/${currentLang.img}`}
               width={30}
