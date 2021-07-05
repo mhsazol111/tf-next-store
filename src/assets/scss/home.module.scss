@@ -5,22 +5,25 @@
   bottom: 1.25rem !important;
   li {
     margin-right: 1rem;
-    width: 22px;
-    height: 22px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 100%;
-    border: 1px solid transparent;
-    transition: all 0.3s ease-in-out;
     button {
-      width: 4px;
-      height: 4px;
+      width: 22px;
+      height: 22px;
       border-radius: 100%;
-      background-color: #666;
+      border: 1px solid transparent;
+      transition: all 0.3s ease-in-out;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &:focus {
+        outline: none;
+        border-color: #1ce2d8bf;
+        border-radius: 100%;
+      }
     }
     &.dot_active {
-      border-color: #666;
+      button {
+        border-color: #666;
+      }
     }
   }
 }

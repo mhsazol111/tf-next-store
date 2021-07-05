@@ -95,10 +95,6 @@ const ProductItem = ({ product, item }) => {
               className="product_interactive_wrap relative z-40 flex justify-between items-center bg-theme_gray py-1 mt-4 rounded-full"
             >
               <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  alert('clicked');
-                }}
                 type="button"
                 className="relative flex justify-center w-1/3 rounded-full group focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75"
               >

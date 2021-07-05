@@ -9,6 +9,7 @@ import InteractiveIcon from '../src/components/utilities/InterativeIcon';
 import PopularCategories from '../src/components/PopularCategories';
 import NewsLetter from '../src/components/NewsLetter';
 import ProductGrid from '../src/components/ProductGrid';
+import Brands from '../src/components/Brands';
 
 const Home = () => (
   <>
@@ -83,6 +84,31 @@ const Home = () => (
     <div className="section section__newsletter py-20">
       <div className="container">
         <NewsLetter />
+      </div>
+    </div>
+
+    <div className="section section__brands py-20 bg-theme_blue">
+      <div className="container">
+        <InView
+          variants={{
+            initial: { opacity: 0 },
+            animate: { opacity: 1, transition: { when: 'beforeChildren', staggerChildren: 0.07 } },
+          }}
+          threshold={0}
+        >
+          <h2 className="text-3xl text-center mb-6 overflow-hidden">
+            <motion.span
+              variants={{
+                initial: { y: -30 },
+                animate: { y: 0, transition: { ease, duration: 1 } },
+              }}
+              className="block"
+            >
+              Our Partners
+            </motion.span>
+          </h2>
+          <Brands />
+        </InView>
       </div>
     </div>
 

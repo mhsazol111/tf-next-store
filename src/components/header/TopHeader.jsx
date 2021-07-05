@@ -8,14 +8,14 @@ import CurrencyDropdown from './partials/CurrencyDropdown';
 import LangDropdown from './partials/LangDropdown';
 
 const TopHeader = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
 
-  const handlePopupOpen = () => {
-    setIsOpen(true);
+  const handleLoginPopupOpen = () => {
+    setIsLoginOpen(true);
   };
 
-  const handlePopupClose = () => {
-    setIsOpen(false);
+  const handleLoginPopupClose = () => {
+    setIsLoginOpen(false);
   };
 
   return (
@@ -54,10 +54,10 @@ const TopHeader = () => {
 
             <button
               type="button"
-              onClick={handlePopupOpen}
-              className="group bg-theme_green-300 rounded-full flex items-center pl-[3px] pr-2 py-[3px] transition-all ease-in-out hover:bg-theme_green focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75"
+              onClick={handleLoginPopupOpen}
+              className="group bg-theme_green-300 rounded-full flex items-center pl-[3px] pr-2 py-[3px] transition ease-in-out hover:bg-theme_green focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75"
             >
-              <span className="bg-white rounded-full flex w-6 h-6 items-center justify-center transition-all ease-in-out group-hover:bg-white ">
+              <span className="bg-white rounded-full flex w-6 h-6 items-center justify-center transition ease-in-out group-hover:bg-white ">
                 <span className="w-[15px] svg_icon">
                   <UserIcon />
                 </span>
@@ -65,7 +65,11 @@ const TopHeader = () => {
               <span className="ml-2 transition-all ease-in-out group-hover:text-white">Login</span>
             </button>
 
-            <LoginPopup status={isOpen} onOpen={handlePopupOpen} onClose={handlePopupClose} />
+            <LoginPopup
+              status={isLoginOpen}
+              onOpen={handleLoginPopupOpen}
+              onClose={handleLoginPopupClose}
+            />
           </div>
         </div>
       </div>

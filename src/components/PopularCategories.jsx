@@ -38,7 +38,7 @@ const PopularCategories = () => {
                 animate: {
                   opacity: 1,
                   y: 0,
-                  transition: { duration: 0.1, when: 'beforeChildren', staggerChildren: 0.1 },
+                  transition: { duration: 0.3, when: 'beforeChildren', staggerChildren: 0.1 },
                 },
               }}
               className="bg-white relative overflow-hidden rounded-lg flex items-center w-full px-5 py-6 shadow group focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75"
