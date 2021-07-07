@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { ease } from '../src/services/animation';
-
+import Layout from '../src/components/utilities/Layout';
 import InView from '../src/components/utilities/inView';
 import HomeSlider from '../src/components/HomeSlider';
 import FeaturedCategories from '../src/components/FeaturedCategories';
@@ -12,7 +12,7 @@ import ProductGrid from '../src/components/ProductGrid';
 import Brands from '../src/components/Brands';
 
 const Home = () => (
-  <>
+  <Layout>
     <div className="section section__home_slider bg-white pt-4 pb-4">
       <div className="container">
         <HomeSlider />
@@ -117,6 +117,6 @@ const Home = () => (
         <InteractiveIcon />
       </div>
     </div>
-  </>
+  </Layout>
 );
 export default Home;

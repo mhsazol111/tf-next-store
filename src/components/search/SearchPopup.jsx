@@ -25,7 +25,6 @@ const SearchPopup = ({ status, onClose }) => {
 
   const handleInputChange = () => {
     const searchValue = searchInputRef.current.value;
-    console.log(searchValue);
     if (searchValue) {
       setIsLoading(true);
       setTimeout(() => {
@@ -86,7 +85,7 @@ const SearchPopup = ({ status, onClose }) => {
                     ref={searchInputRef}
                     type="text"
                     onChange={handleInputChange}
-                    placeholder="Search for anything and press Enter"
+                    placeholder="Search for anything"
                     className="w-full h-24 rounded-lg pl-12 pr-6 focus:outline-none"
                   />
                 </div>

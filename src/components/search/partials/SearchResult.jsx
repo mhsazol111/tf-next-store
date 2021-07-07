@@ -1,49 +1,80 @@
 import { motion } from 'framer-motion';
+import Link from 'next/link';
+import Image from 'next/image';
 import { historyRevealAnimation } from '../../../services/animation';
-import HistoryIcon from '../../../../public/images/icons/history.svg';
 
-const SearchResult = () => (
-  <div className="search_result">
-    <motion.p
-      variants={historyRevealAnimation}
-      className="recent_label text-gray-300 uppercase font-semibold py-3"
-    >
-      Search Result (4)
-    </motion.p>
+const SearchResult = () => {
+  const result = [
+    {
+      id: 1,
+      title: 'Soothing Cleanser',
+      url: '/products/product-1',
+      image: 'product-1.png',
+      price: 15,
+    },
+    {
+      id: 2,
+      title: 'Gentle Skin Cleanser',
+      url: '/products/product-1',
+      image: 'product-2.png',
+      price: 25,
+    },
+    {
+      id: 3,
+      title: 'Moisturizing Lotion',
+      url: '/products/product-1',
+      image: 'product-3.png',
+      price: 20,
+    },
+    {
+      id: 4,
+      title: 'Micro-Sculpting Cream',
+      url: '/products/product-1',
+      image: 'product-4.png',
+      price: 15,
+    },
+  ];
 
-    <div className="search_result flex mb-4">
-      <motion.div
+  //
+  return (
+    <div className="search_result">
+      <motion.p
         variants={historyRevealAnimation}
-        role="button"
-        className="relative text-xs flex items-center px-4 py-3 mr-3 bg-pink-100 rounded-lg"
+        className="recent_label text-gray-300 uppercase font-semibold py-3"
       >
-        <span className="svg_icon w-4 mr-2">
-          <HistoryIcon />
-        </span>
-        FaceMask
-      </motion.div>
+        Search Result (4)
+      </motion.p>
+
       <motion.div
-        variants={historyRevealAnimation}
-        role="button"
-        className="relative text-xs flex items-center px-4 py-3 mr-3 bg-green-100 rounded-lg"
+        variants={{
+          animate: { transition: { staggerChildren: 0.1 } },
+        }}
+        className="search_result mb-4"
       >
-        <span className="svg_icon w-4 mr-2">
-          <HistoryIcon />
-        </span>
-        Night Cream
-      </motion.div>
-      <motion.div
-        variants={historyRevealAnimation}
-        role="button"
-        className="relative text-xs flex items-center px-4 py-3 mr-3 bg-yellow-100 rounded-lg"
-      >
-        <span className="svg_icon w-4 mr-2">
-          <HistoryIcon />
-        </span>
-        Shoes
+        {result.map((product) => (
+          <Link key={product.id} href={product.url} passHref>
+            <motion.a
+              variants={historyRevealAnimation}
+              className="relative w-full text-xs flex items-center px-2 py-1 mr-3 bg-gray-100 rounded-lg mb-3 hover:bg-yellow-200"
+            >
+              <div className="product_thumb mr-4">
+                <Image
+                  src={`/images/products/${product.image}`}
+                  width={60}
+                  height={60}
+                  alt={product.title}
+                />
+              </div>
+              <div className="product_info">
+                <p className="text-base font-semibold">{product.title}</p>
+                <p className="text-sm">${product.price}</p>
+              </div>
+            </motion.a>
+          </Link>
+        ))}
       </motion.div>
     </div>
-  </div>
-);
+  );
+};
 
 export default SearchResult;
