@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import useFixedHeader from '../../hooks/useFixedHeader';
 import CategoryDropdown from './partials/CategoryDropdown';
-import Navigation from './Navigation';
+import Navigation from './partials/Navigation';
 import SearchPopup from '../search/SearchPopup';
 
 import HeartIcon from '../../../public/images/icons/heart.svg';
@@ -24,8 +24,8 @@ const MainHeader = () => {
 
   return (
     <div
-      className={`main_header text-[#777] z-[19] w-full top-0 left-0 transition py-1 bg-white ${
-        isHeaderFixed ? 'fixed shadow' : 'relative'
+      className={`main_header shadow text-[#777] z-[19] w-full top-0 left-0 transition py-1 bg-white ${
+        isHeaderFixed ? 'fixed' : 'relative'
       }  `}
     >
       <div className="container">

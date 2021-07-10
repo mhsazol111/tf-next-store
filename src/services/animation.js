@@ -38,3 +38,31 @@ export const historyRevealAnimation = {
     transition: { duration: 0.2 },
   },
 };
+
+// experimenting with float animation
+// import useViewport from '../hooks/useViewport';
+// const testingFloatAnimation = (status, parent) => {
+//   // Parent is the product itemRef
+//   const { width, height } = useViewport();
+//   const position = status && parent.getBoundingClientRect();
+
+//   const { width: initialWidth, height: initialHeight, top: initialY, left: initialX } = position;
+//   const finalY = height / 2 - initialHeight / 2;
+//   const finalX = width / 2 - initialWidth / 2;
+
+//   const variants = {
+//     initial: { opacity: 1, y: initialY, x: initialX, width: initialWidth },
+//     animate: {
+//       opacity: 1,
+//       width: 400,
+//       y: finalY,
+//       x: finalX,
+//       transition: {
+//         when: 'beforeChildren',
+//         staggerChildren: 0.05,
+//         duration: 0.2,
+//       },
+//     },
+//     exit: { opacity: 0 },
+//   }
+// }
