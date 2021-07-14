@@ -10,6 +10,7 @@ import PopularCategories from '../src/components/PopularCategories';
 import NewsLetter from '../src/components/NewsLetter';
 import ProductGrid from '../src/components/ProductGrid';
 import Brands from '../src/components/Brands';
+import TopRatedProducts from '../src/components/TopRatedProducts';
 
 const Home = () => (
   <Layout>
@@ -25,7 +26,7 @@ const Home = () => (
       </div>
     </div>
 
-    <div className="section section__latest_product bg-theme_blue py-20">
+    <div className="section section__latest_products bg-theme_blue py-20">
       <div className="container">
         <InView
           variants={{
@@ -47,6 +48,34 @@ const Home = () => (
           </h2>
         </InView>
         <ProductGrid />
+      </div>
+    </div>
+
+    <div
+      className="section section__top_rated_products py-20"
+      // style={{ backgroundImage: 'url(/images/blob-scene-pink.svg)' }}
+    >
+      <div className="container">
+        <InView
+          variants={{
+            initial: { opacity: 0 },
+            animate: { opacity: 1, transition: { when: 'beforeChildren' } },
+          }}
+          threshold={0.1}
+        >
+          <h2 className="text-3xl mb-6 overflow-hidden">
+            <motion.span
+              variants={{
+                initial: { x: -300 },
+                animate: { x: 0, transition: { ease, duration: 1 } },
+              }}
+              className="block"
+            >
+              Top Rated Products
+            </motion.span>
+          </h2>
+        </InView>
+        <TopRatedProducts />
       </div>
     </div>
 
