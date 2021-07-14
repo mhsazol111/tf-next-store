@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence, AnimateSharedLayout } from 'framer-motion';
 import { Dialog } from '@headlessui/react';
-import { overlayAnimation } from '../../services/animation';
+import { overlayAnimation, overlayWrapperReveal } from '../../services/animation';
 
 import SearchIcon from '../../../public/images/icons/search.svg';
 import TrendingKeyWords from './partials/TrendingKeyWords';
@@ -54,15 +54,7 @@ const SearchPopup = ({ status, onClose }) => {
 
           <AnimateSharedLayout>
             <motion.div
-              variants={{
-                initial: { opacity: 0, scale: 0.7 },
-                animate: {
-                  opacity: 1,
-                  scale: 1,
-                  transition: { when: 'beforeChildren', staggerChildren: 0.05, duration: 0.2 },
-                },
-                exit: { opacity: 0 },
-              }}
+              variants={overlayWrapperReveal}
               layout
               className="search_form_wrapper max-w-[700px] w-[90%] bg-white rounded-2xl shadow-lg relative overflow-hidden"
             >

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Dialog } from '@headlessui/react';
 import Link from 'next/link';
-import { overlayAnimation } from '../../services/animation';
+import { overlayAnimation, overlayWrapperReveal } from '../../services/animation';
 
 import Eye from '../../../public/images/icons/eye.svg';
 import FacebookIcon from '../../../public/images/icons/facebook.svg';
@@ -37,15 +37,7 @@ const LoginPopup = ({ status, onClose }) => {
           <Dialog.Overlay className="bg-black w-full h-full top-0 left-0 absolute opacity-40" />
 
           <motion.div
-            variants={{
-              initial: { opacity: 0, scale: 0.7 },
-              animate: {
-                opacity: 1,
-                scale: 1,
-                transition: { when: 'beforeChildren', staggerChildren: 0.05, duration: 0.2 },
-              },
-              exit: { opacity: 0 },
-            }}
+            variants={overlayWrapperReveal}
             className="login_form_wrapper max-w-[500px] w-[90%] bg-white rounded-lg shadow-lg relative overflow-hidden"
           >
             <div className="login_form_header bg-theme_gray px-10 py-6 relative">

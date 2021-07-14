@@ -42,3 +42,16 @@ $primaryFont: 'Poppins', sans-serif;
     }
   }
 }
+.quick_view_dots {
+  li {
+    button {
+      background-color: #ddd;
+      border-color: transparent;
+    }
+    &.react-multi-carousel-dot--active {
+      button {
+        background-color: #333;
+      }
+    }
+  }
+}
