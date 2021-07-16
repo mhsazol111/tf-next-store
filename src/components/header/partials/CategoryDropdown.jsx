@@ -14,6 +14,7 @@ import Grocery from '../../../../public/images/icons/grocery.svg';
 import Electronics from '../../../../public/images/icons/laptop.svg';
 import Health from '../../../../public/images/icons/healthcare.svg';
 import AutoMobile from '../../../../public/images/icons/car.svg';
+import { focusClasses } from '../../../services/dummyAPI';
 
 const CategoryDropdown = () => {
   const categoryItems = [
@@ -58,7 +59,7 @@ const CategoryDropdown = () => {
                   animate="animate"
                   exit="exit"
                   variants={dropdownWrapperAnimation}
-                  className="category_dropdown_wrapper absolute right-0 top-12 bg-white transform origin-top-right shadow-lg rounded-lg py-3 ring-2 ring-theme_green ring-opacity-75 focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75"
+                  className={`category_dropdown_wrapper absolute right-0 top-12 bg-white transform origin-top-right shadow-lg rounded-lg py-3 ring-2 ring-theme_green ring-opacity-75 ${focusClasses}`}
                 >
                   {categoryItems &&
                     categoryItems.map((item) => (

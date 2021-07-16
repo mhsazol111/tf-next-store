@@ -12,6 +12,7 @@ import EyeIcon from '../../public/images/icons/eye.svg';
 import style from '../assets/scss/productItem.module.scss';
 import useViewport from '../hooks/useViewport';
 import ProductQuickView from './ProductQuickView';
+import { focusClasses } from '../services/dummyAPI';
 
 const ProductItem = ({ product, item }) => {
   const { width } = useViewport();
@@ -22,7 +23,7 @@ const ProductItem = ({ product, item }) => {
       opacity: 1,
       transition: {
         duration: 0.2,
-        delay: width > 1024 ? custom * 0.15 : 0,
+        delay: width > 1024 ? custom * 0.05 : 0,
         staggerChildren: 0.1,
         when: 'beforeChildren',
       },
@@ -43,7 +44,9 @@ const ProductItem = ({ product, item }) => {
     <>
       <InView variants={variants} custom={item}>
         <Link href={`/products/${product.slug}`} passHref>
-          <a className="w-full block product_gird__item bg-white px-3 py-5 rounded-xl border-2 border-solid border-transparent focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75 transition-shadow ease-in-out duration-200 hover:ring-2 hover:ring-theme_green hover:ring-opacity-75">
+          <a
+            className={`w-full block product_gird__item bg-white px-3 py-5 rounded-xl border-2 border-solid border-transparent ${focusClasses} transition-shadow ease-in-out duration-200 hover:ring-2 hover:ring-theme_green hover:ring-opacity-75`}
+          >
             <motion.div
               variants={{
                 initial: { y: 10, opacity: 0 },
@@ -109,7 +112,7 @@ const ProductItem = ({ product, item }) => {
               >
                 <button
                   type="button"
-                  className="relative flex justify-center w-1/3 rounded-full group focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75"
+                  className={`relative flex justify-center w-1/3 rounded-full group ${focusClasses}`}
                 >
                   <span className="svg_icon w-[28px] h-[28px] flex items-center justify-center px-[6px] py-[6px] group-hover:text-yellow-400  rounded-full group-hover:bg-white">
                     <HeartIcon />
@@ -123,7 +126,7 @@ const ProductItem = ({ product, item }) => {
                 </button>
                 <button
                   type="button"
-                  className="relative flex justify-center w-1/3 rounded-full group focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75"
+                  className={`relative flex justify-center w-1/3 rounded-full group ${focusClasses}`}
                 >
                   <span className="svg_icon w-[28px] h-[28px] flex items-center justify-center px-[6px] py-[6px] rounded-full group-hover:text-theme_green group-hover:bg-white">
                     <CartIcon />
@@ -141,7 +144,7 @@ const ProductItem = ({ product, item }) => {
                     handleQuickViewOpen();
                   }}
                   type="button"
-                  className="relative flex justify-center w-1/3 rounded-full group focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75"
+                  className={`relative flex justify-center w-1/3 rounded-full group ${focusClasses}`}
                 >
                   <span className="svg_icon w-[28px] h-[28px] flex items-center justify-center px-[4px] py-[4px] rounded-full group-hover:text-theme_pink group-hover:bg-white">
                     <EyeIcon />

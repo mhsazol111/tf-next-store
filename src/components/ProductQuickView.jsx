@@ -10,6 +10,7 @@ import {
 
 import StarRating from './utilities/StarRating';
 import CloseIcon from '../../public/images/icons/close.svg';
+import { focusClasses } from '../services/dummyAPI';
 
 const ProductQuickView = ({ status, onClose, product }) => {
   const responsive = {
@@ -68,7 +69,7 @@ const ProductQuickView = ({ status, onClose, product }) => {
                     variants={quickViewItemRevealAnimation}
                     type="button"
                     onClick={onClose}
-                    className="absolute right-1 top-1 px-2 py-2 flex items-center justify-center rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75"
+                    className={`absolute right-1 top-1 px-2 py-2 flex items-center justify-center rounded ${focusClasses}`}
                   >
                     <span className="svg_icon w-3">
                       <CloseIcon />
@@ -102,7 +103,7 @@ const ProductQuickView = ({ status, onClose, product }) => {
                   >
                     <button
                       type="button"
-                      className="text-xs uppercase font-semibold bg-yellow-300 hover:bg-yellow-400 px-4 py-2 mr-2 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75"
+                      className={`text-xs uppercase font-semibold bg-yellow-300 hover:bg-yellow-400 px-4 py-2 mr-2 rounded ${focusClasses}`}
                     >
                       Add to cart
                     </button>

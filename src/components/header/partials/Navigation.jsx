@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { dropdownItemAnimation, dropdownWrapperAnimation } from '../../../services/animation';
 
 import Arrow from '../../../../public/images/icons/down-arrow.svg';
+import { focusClasses } from '../../../services/dummyAPI';
 
 const Navigation = () => {
   const menuItems = [
@@ -101,7 +102,7 @@ const Navigation = () => {
                               animate="animate"
                               exit="exit"
                               variants={dropdownWrapperAnimation}
-                              className="sub-menu absolute top-14 bg-white shadow-lg rounded-lg py-2 transform origin-top ring-2 ring-theme_green ring-opacity-75 focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75"
+                              className={`sub-menu absolute top-14 bg-white shadow-lg rounded-lg py-2 transform origin-top ring-2 ring-theme_green ring-opacity-75 ${focusClasses}`}
                             >
                               {item.children.map((child) => (
                                 <Menu.Item

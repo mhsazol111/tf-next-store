@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu } from '@headlessui/react';
 import ArrowDown from '../../../../public/images/icons/down-arrow.svg';
 import { dropdownItemAnimation, dropdownWrapperAnimation } from '../../../services/animation';
+import { focusClasses } from '../../../services/dummyAPI';
 
 const CurrencyDropdown = () => {
   const currencies = ['USD', 'EUR'];
@@ -13,7 +14,9 @@ const CurrencyDropdown = () => {
     <Menu as="div" className="top_header_dropdown">
       {({ open }) => (
         <>
-          <Menu.Button className="flex items-center w-full px-2 py-1 rounded hover:text-theme_green focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75">
+          <Menu.Button
+            className={`flex items-center w-full px-2 py-1 rounded hover:text-theme_green ${focusClasses}`}
+          >
             <span className="mr-2">{currentCurrency}</span>
             <span className="svg_icon w-[.6rem]">
               <ArrowDown />
@@ -29,7 +32,7 @@ const CurrencyDropdown = () => {
                 animate="animate"
                 exit="exit"
                 variants={dropdownWrapperAnimation}
-                className="top_header_menu absolute w-full top-[32px] bg-white transform origin-top rounded-md py-2 shadow-md ring-2 ring-theme_green ring-opacity-75 focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75"
+                className={`top_header_menu absolute w-full top-[32px] bg-white transform origin-top rounded-md py-2 shadow-md ring-2 ring-theme_green ring-opacity-75 ${focusClasses}`}
               >
                 {currencies &&
                   currencies.map((currency) => (

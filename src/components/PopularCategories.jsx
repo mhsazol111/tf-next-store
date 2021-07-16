@@ -11,6 +11,8 @@ import Electronics from '../../public/images/icons/laptop.svg';
 import Health from '../../public/images/icons/healthcare.svg';
 import AutoMobile from '../../public/images/icons/car.svg';
 
+import { focusClasses } from '../services/dummyAPI';
+
 const PopularCategories = () => {
   const categoryList = [
     { title: 'Fashion', url: 'fashion', icon: <Shirt /> },
@@ -41,7 +43,7 @@ const PopularCategories = () => {
                   transition: { duration: 0.3, when: 'beforeChildren', staggerChildren: 0.1 },
                 },
               }}
-              className="bg-white relative overflow-hidden rounded-lg flex items-center w-full px-5 py-6 shadow group focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75"
+              className={`bg-white relative overflow-hidden rounded-lg flex items-center w-full px-5 py-6 shadow group ${focusClasses}`}
             >
               <div className="absolute w-0 h-full left-0 top-0 bg-theme_green-400 transition-all ease-in-out duration-700 group-hover:w-full" />
               <div className="flex items-center relative">

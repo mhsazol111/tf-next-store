@@ -6,6 +6,7 @@ import EnvelopeIcon from '../../../public/images/icons/mail.svg';
 import UserIcon from '../../../public/images/icons/user.svg';
 import CurrencyDropdown from './partials/CurrencyDropdown';
 import LangDropdown from './partials/LangDropdown';
+import { focusClasses } from '../../services/dummyAPI';
 
 const TopHeader = () => {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
@@ -55,7 +56,7 @@ const TopHeader = () => {
             <button
               type="button"
               onClick={handleLoginPopupOpen}
-              className="group bg-theme_green-300 rounded-full flex items-center pl-[3px] pr-2 py-[3px] transition ease-in-out hover:bg-theme_green focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75"
+              className={`group bg-theme_green-300 rounded-full flex items-center pl-[3px] pr-2 py-[3px] transition ease-in-out hover:bg-theme_green ${focusClasses}`}
             >
               <span className="bg-white rounded-full flex w-6 h-6 items-center justify-center transition ease-in-out group-hover:bg-white ">
                 <span className="w-[15px] svg_icon">

@@ -5,13 +5,12 @@ import Image from 'next/image';
 import dummyProducts, { focusClasses } from '../services/dummyAPI';
 import useViewport from '../hooks/useViewport';
 import InView from './utilities/inView';
-import StarRating from './utilities/StarRating';
 
 import LeftArrow from '../../public/images/icons/back.svg';
 import RightArrow from '../../public/images/icons/next.svg';
 
-const TopRatedProducts = () => {
-  const topRatedProducts = dummyProducts.slice(0, 7);
+const BestDeals = () => {
+  const topRatedProducts = dummyProducts.slice(1, 7);
   const { width } = useViewport();
   const responsive = {
     desktop: {
@@ -57,10 +56,9 @@ const TopRatedProducts = () => {
   };
 
   return (
-    <div className="bg-theme_blue p-4 rounded-xl relative">
+    <div className="relative">
       <Carousel
         responsive={responsive}
-        // autoPlay
         showDots={false}
         arrows={false}
         customButtonGroup={<CustomArrows />}
@@ -70,9 +68,17 @@ const TopRatedProducts = () => {
           <InView key={product.id} variants={variants} custom={item} className="p-2">
             <Link href={`/products/${product.slug}`} passHref>
               <a
-                className={`bg-white block rounded-xl px-2 py-4 text-center border-2 border-solid border-transparent ${focusClasses} transition-shadow ease-in-out duration-200 hover:ring-2 hover:ring-theme_green hover:ring-opacity-75`}
+                className={`group bg-white block rounded-xl px-2 pt-2 pb-4 text-center border-2 border-solid border-transparent ${focusClasses} transition-shadow ease-in-out duration-200 hover:ring-2 hover:ring-theme_green hover:ring-opacity-75`}
               >
-                <motion.div variants={itemReveal} className="pointer-events-none pb-2">
+                <motion.div
+                  variants={itemReveal}
+                  className="pointer-events-none pt-4 pb-1 mb-4 rounded-xl bg-theme_blue group-hover:bg-blue-100 relative"
+                >
+                  {product.sale_percent && (
+                    <span className="absolute right-[5px] top-[5px] block z-10 text-[9px] bg-yellow-300 px-2 py-1 rounded-full">
+                      {product.sale_percent}% off
+                    </span>
+                  )}
                   <Image
                     src={`/images/products/${product.imageUrl}`}
                     width={product.imageWidth / 4}
@@ -83,19 +89,22 @@ const TopRatedProducts = () => {
                 <motion.h4 variants={itemReveal} className="text-sm">
                   {product.title}
                 </motion.h4>
+
                 <motion.p
                   variants={itemReveal}
-                  className="text-lg font-semibold pt-1 text-theme_green"
+                  className="text-lg font-semibold pt-1 text-theme_green flex items-center justify-center"
                 >
-                  ${product.price}
+                  {product.sale_price && (
+                    <span className="text-theme_green mr-3">${product.price}</span>
+                  )}
+                  <span
+                    className={
+                      product.sale_price ? 'line-through text-red-400 text-xs' : 'text-theme_green'
+                    }
+                  >
+                    ${product.price}
+                  </span>
                 </motion.p>
-                <motion.div
-                  variants={itemReveal}
-                  className="star_rating text-center flex items-center justify-center"
-                >
-                  <StarRating value={product.rating} />
-                  <span className="text-xs ml-2">(35)</span>
-                </motion.div>
               </a>
             </Link>
           </InView>
@@ -115,7 +124,7 @@ const CustomArrows = ({ next, previous, ...rest }) => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, transition: { delay: 0.8 } }}
-      className="absolute left-0 top-[50%] transform translate-y-[-50%] px-1 w-full flex justify-between pointer-events-none"
+      className="absolute -left-4 top-[50%] transform translate-y-[-50%] px-1 w-[102.5%] flex justify-between pointer-events-none"
     >
       <button
         type="button"
@@ -145,4 +154,4 @@ const CustomArrows = ({ next, previous, ...rest }) => {
   );
 };
 
-export default TopRatedProducts;
+export default BestDeals;

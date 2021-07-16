@@ -4,6 +4,7 @@ import { Menu } from '@headlessui/react';
 import Image from 'next/image';
 import ArrowDown from '../../../../public/images/icons/down-arrow.svg';
 import { dropdownItemAnimation, dropdownWrapperAnimation } from '../../../services/animation';
+import { focusClasses } from '../../../services/dummyAPI';
 
 const LangDropdown = () => {
   const languages = [
@@ -18,7 +19,9 @@ const LangDropdown = () => {
     <Menu as="div" className="top_header_dropdown w-[116px]">
       {({ open }) => (
         <>
-          <Menu.Button className="flex flex-wrap items-center w-full py-1 pr-1 rounded hover:text-theme_green focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75">
+          <Menu.Button
+            className={`flex flex-wrap items-center w-full py-1 pr-1 rounded hover:text-theme_green ${focusClasses}`}
+          >
             <Image
               src={`/images/icons/${currentLang.img}`}
               width={30}
@@ -40,7 +43,7 @@ const LangDropdown = () => {
                 animate="animate"
                 exit="exit"
                 variants={dropdownWrapperAnimation}
-                className="top_header_menu absolute w-full top-[32px] bg-white transform origin-top rounded-md py-2 shadow-md ring-2 ring-theme_green ring-opacity-75 focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75"
+                className={`top_header_menu absolute w-full top-[32px] bg-white transform origin-top rounded-md py-2 shadow-md ring-2 ring-theme_green ring-opacity-75 ${focusClasses}`}
               >
                 {languages &&
                   languages.map((lang) => (

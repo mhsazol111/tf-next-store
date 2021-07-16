@@ -2,9 +2,10 @@ import { motion } from 'framer-motion';
 import Carousel from 'react-multi-carousel';
 import Link from 'next/link';
 import Image from 'next/image';
+import { focusClasses } from '../services/dummyAPI';
 import InView from './utilities/inView';
-import CustomArrows from './utilities/CustomArrows';
-import CustomDots from './utilities/CustomDots';
+import LeftArrow from '../../public/images/icons/back.svg';
+import RightArrow from '../../public/images/icons/next.svg';
 
 import 'react-multi-carousel/lib/styles.css';
 import style from '../assets/scss/home.module.scss';
@@ -63,7 +64,7 @@ const HomeSlider = () => {
       <Carousel
         responsive={responsive}
         // autoPlay
-        infinite
+        infinite={false}
         showDots
         // renderDotsOutside
         customDot={<CustomDots />}
@@ -107,7 +108,7 @@ const HomeSlider = () => {
                           animate: { opacity: 1, y: 0, transition: { duration: 0.8 } },
                         }}
                         whileHover={{ scale: 1.07 }}
-                        className="inline-block font-semibold origin-left border-solid border-2 border-black rounded-full px-7 py-2 text-sm hover:bg-black hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75"
+                        className={`inline-block font-semibold origin-left border-solid border-2 border-black rounded-full px-7 py-2 text-sm hover:bg-black hover:text-white ${focusClasses}`}
                       >
                         View Details
                       </motion.a>
@@ -142,5 +143,55 @@ const HomeSlider = () => {
     </motion.div>
   );
 };
+
+const CustomArrows = ({ next, previous, ...rest }) => {
+  const {
+    carouselState: { currentSlide, totalItems, slidesToShow },
+  } = rest;
+  const totalSlides = totalItems - slidesToShow;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1, transition: { delay: 0.8 } }}
+      className="home_slider_arrow absolute right-12 bottom-4 flex items-center"
+    >
+      <button
+        type="button"
+        onClick={previous}
+        className={`${
+          currentSlide === 0 ? 'opacity-40 pointer-events-none' : 'pointer-events-auto'
+        } mr-5 hover:text-gray-500 flex items-center justify-center h-7 w-7 ${focusClasses} focus-visible:rounded-full`}
+      >
+        <span className="svg_icon w-4">
+          <LeftArrow />
+        </span>
+      </button>
+      <button
+        type="button"
+        onClick={next}
+        className={`${
+          currentSlide === totalSlides ? 'opacity-40 pointer-events-none' : 'pointer-events-auto'
+        } hover:text-gray-500 flex items-center justify-center h-7 w-7 ${focusClasses} focus-visible:rounded-full`}
+      >
+        <span className="svg_icon w-4">
+          <RightArrow />
+        </span>
+      </button>
+    </motion.div>
+  );
+};
+
+const CustomDots = ({ onClick, active }) => (
+  <motion.li
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1, transition: { delay: 0.8 } }}
+    className={active ? style.dot_active : ''}
+  >
+    <button type="button" onClick={() => onClick()}>
+      <span className="w-1 h-1 rounded-full bg-gray-500 block" />
+    </button>
+  </motion.li>
+);
 
 export default HomeSlider;

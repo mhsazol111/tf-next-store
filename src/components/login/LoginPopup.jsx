@@ -8,6 +8,7 @@ import Eye from '../../../public/images/icons/eye.svg';
 import FacebookIcon from '../../../public/images/icons/facebook.svg';
 import GoogleIcon from '../../../public/images/icons/google.svg';
 import CloseIcon from '../../../public/images/icons/close.svg';
+import { focusClasses } from '../../services/dummyAPI';
 
 const LoginPopup = ({ status, onClose }) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -17,7 +18,7 @@ const LoginPopup = ({ status, onClose }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('logged in');
+    // console.log('logged in');
   };
 
   return (
@@ -52,7 +53,7 @@ const LoginPopup = ({ status, onClose }) => {
                 }}
                 type="button"
                 onClick={onClose}
-                className="absolute right-1 top-1 px-2 py-2 flex items-center justify-center rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75"
+                className={`absolute right-1 top-1 px-2 py-2 flex items-center justify-center rounded ${focusClasses}`}
               >
                 <span className="svg_icon w-3">
                   <CloseIcon />
@@ -136,7 +137,7 @@ const LoginPopup = ({ status, onClose }) => {
                   <button
                     type="button"
                     onClick={togglePassword}
-                    className="svg_icon w-6 h-6 flex items-center z-10 justify-center rounded-full hover:bg-theme_gray cursor-pointer px-1 py-1 absolute right-2 bottom-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75"
+                    className={`svg_icon w-6 h-6 flex items-center z-10 justify-center rounded-full hover:bg-theme_gray cursor-pointer px-1 py-1 absolute right-2 bottom-2 ${focusClasses}`}
                   >
                     <Eye />
                   </button>
@@ -241,7 +242,7 @@ const LoginPopup = ({ status, onClose }) => {
               className="login_form_footer bg-theme_gray px-10 py-4 relative flex items-center justify-center"
             >
               <Link href="/signup">
-                <a className="block text-xs text-center p-1 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75">
+                <a className={`block text-xs text-center p-1 rounded ${focusClasses}`}>
                   Don&apos;t have an account? <strong>Sign Up</strong>
                 </a>
               </Link>

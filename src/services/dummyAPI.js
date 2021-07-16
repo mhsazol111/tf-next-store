@@ -200,3 +200,6 @@ const dummyProducts = [
 ];
 
 export default dummyProducts;
+
+export const focusClasses =
+  'focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75';

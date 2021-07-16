@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { focusClasses } from '../services/dummyAPI';
 import InView from './utilities/inView';
 
 const NewsLetter = () => (
@@ -74,11 +75,11 @@ const NewsLetter = () => (
           <input
             type="text"
             placeholder="Enter your email"
-            className="w-full h-12 rounded-full pl-6 pr-32 bg-white text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75"
+            className={`w-full h-12 rounded-full pl-6 pr-32 bg-white text-sm ${focusClasses}`}
           />
           <button
             type="submit"
-            className="absolute right-[1.4rem] top-[3px] bg-yellow-200 text-sm font-semibold px-5 py-[11px] rounded-full hover:bg-black hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75"
+            className={`absolute right-[1.4rem] top-[3px] bg-yellow-200 text-sm font-semibold px-5 py-[11px] rounded-full hover:bg-black hover:text-white ${focusClasses}`}
           >
             Subscribe
           </button>
