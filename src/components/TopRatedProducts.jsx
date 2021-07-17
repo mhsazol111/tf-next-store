@@ -11,7 +11,7 @@ import LeftArrow from '../../public/images/icons/back.svg';
 import RightArrow from '../../public/images/icons/next.svg';
 
 const TopRatedProducts = () => {
-  const topRatedProducts = dummyProducts.slice(0, 7);
+  const topRatedProducts = dummyProducts.slice(3, 10);
   const { width } = useViewport();
   const responsive = {
     desktop: {

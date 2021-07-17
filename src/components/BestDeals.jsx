@@ -10,7 +10,7 @@ import LeftArrow from '../../public/images/icons/back.svg';
 import RightArrow from '../../public/images/icons/next.svg';
 
 const BestDeals = () => {
-  const topRatedProducts = dummyProducts.slice(1, 7);
+  const topRatedProducts = dummyProducts.slice(6, 14);
   const { width } = useViewport();
   const responsive = {
     desktop: {
