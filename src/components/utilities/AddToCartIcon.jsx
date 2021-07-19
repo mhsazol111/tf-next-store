@@ -7,6 +7,7 @@ import {
   isInCart,
   decrementItem,
   removeProductFromCart,
+  updateProduct,
 } from '../../services/cart';
 import CartIcon from '../../../public/images/icons/cart.svg';
 
@@ -20,7 +21,7 @@ const AddToCartIcon = ({ product }) => {
   const [globalCart, setGlobalCart] = useContext(CartContext);
   const availableProducts = 150;
 
-  // Check if product is already in the cart
+  // Check if product is already in the cart on initial load
   useEffect(() => (isInCart(product.id) ? setInCart(true) : setInCart(false)), [product.id]);
 
   const updateGlobalCart = () => {
@@ -32,6 +33,8 @@ const AddToCartIcon = ({ product }) => {
     e.preventDefault();
     const value = incrementItem(quantity, availableProducts);
     setQuantity(value);
+    updateProduct(product.id, { quantity: value });
+    updateGlobalCart();
   };
 
   const handleDecrement = (e) => {
@@ -40,6 +43,8 @@ const AddToCartIcon = ({ product }) => {
     if (quantity > 1) {
       const value = decrementItem(quantity);
       setQuantity(value);
+      updateProduct(product.id, { quantity: value });
+      updateGlobalCart();
     } else {
       removeProductFromCart(product.id);
       updateGlobalCart();
@@ -62,6 +67,8 @@ const AddToCartIcon = ({ product }) => {
     if (value <= availableProducts) {
       value = parseInt(value === '' ? 1 : value, 10);
       setQuantity(value);
+      updateProduct(product.id, { quantity: value });
+      updateGlobalCart();
     }
   };
 

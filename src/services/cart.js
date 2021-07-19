@@ -80,6 +80,24 @@ export const isInCart = (id) => {
   return false;
 };
 
+export const getProductFromCart = (productId) => {
+  const cart = getCartData();
+  if (cart) {
+    const { items } = cart;
+    return items.find((item) => item.productId === productId);
+  }
+  return null;
+};
+
+export const getItemFromCart = (itemId) => {
+  const cart = getCartData();
+  if (cart) {
+    const { items } = cart;
+    return items.find((item) => item.itemId === itemId);
+  }
+  return null;
+};
+
 export const addToCart = (product, quantity, variations = null) => {
   if (process.browser) {
     const cart = {};
@@ -124,15 +142,6 @@ export const addToCart = (product, quantity, variations = null) => {
   return false;
 };
 
-export const getProductFromCart = (productId) => {
-  const cart = getCartData();
-  if (cart) {
-    const { items } = cart;
-    return items.find((item) => item.productId === productId);
-  }
-  return null;
-};
-
 export const removeProductFromCart = (productId) => {
   const cart = getCartData();
   const currentProduct = getProductFromCart(productId);
@@ -151,21 +160,38 @@ export const removeProductFromCart = (productId) => {
   return false;
 };
 
-export const updateProduct = (rowId, data) => {
-  if (rowId) {
-    const product = getProductFromCart(rowId);
-    console.log(data);
+export const removeItemFromCart = (itemId) => {
+  /* eslint no-console: "off" */
+  console.log(itemId);
+};
+
+export const updateProduct = (productId, data) => {
+  const cart = getCartData();
+  if (cart && productId && data) {
+    const { items } = cart;
+    const itemIndex = items.findIndex((item) => item.productId === productId);
+    const currentProduct = items[itemIndex];
+
     if (data.quantity) {
-      product.quantity = data.quantity;
+      currentProduct.quantity = data.quantity;
+      currentProduct.itemSummedPrice = data.quantity * currentProduct.itemPrice;
+      currentProduct.itemTotalPrice = data.quantity * currentProduct.itemPrice;
     }
-    if (data.summedPrice) {
-      product.summedPrice = data.summedPrice;
-    }
-    console.log(product, 'updated');
+
+    const updatedCartSubTotal = items.reduce((total, item) => total + item.itemTotalPrice, 0);
+
+    cart.items = items;
+    cart.cartSubTotal = updatedCartSubTotal;
+    cart.cartTotal = updatedCartSubTotal;
+
+    updateCartLocalStorage(cart);
   }
 };
 
-export const updateCart = () => {};
+export const updateCart = () => {
+  /* eslint no-console: "off" */
+  console.log('cart updated');
+};
 
 export const clearCart = () => {
   localStorage.removeItem(process.env.NEXT_PUBLIC_CART);
