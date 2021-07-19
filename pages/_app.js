@@ -4,6 +4,7 @@ import { ViewportProvider } from '../src/context/ViewPortContext';
 import { FixedHeaderProvider } from '../src/context/FixedHeaderContext';
 
 import '../src/assets/scss/globals.scss';
+import { CartProvider } from '../src/context/CartContext';
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -17,9 +18,11 @@ function MyApp({ Component, pageProps }) {
       <NextNprogress color="#1CE2D8" startPosition={0.3} stopDelayMs={200} height={3} />
 
       <ViewportProvider>
-        <FixedHeaderProvider>
-          <Component {...pageProps} />
-        </FixedHeaderProvider>
+        <CartProvider>
+          <FixedHeaderProvider>
+            <Component {...pageProps} />
+          </FixedHeaderProvider>
+        </CartProvider>
       </ViewportProvider>
     </>
   );

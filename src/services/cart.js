@@ -12,50 +12,72 @@ cart = {
       itemPrice: number,
       itemSummedPrice: quantity * itemPrice,
       variations: [
+        color,
+        size,
         ...
       ],
       conditions: [
-        ...
-        offer based on total price
-        offer based on minimum item
+        offer based on total price,
+        offer based on minimum item,
         shipping,
-        vat/tax
+        vat/tax,
+        ...
       ],
-      itemTotalPrice: itemSummedPrice + conditions
+      itemTotalPrice: itemSummedPrice + conditions,
     },
+    ...
   ],
   cartConditions: [
-    ...
     offer,
     shipping,
     vat,tax, 
-    etc
+    ...
   ],
-  cartTotal: cartSubTotal + cartConditions
+  cartTotal: cartSubTotal + cartConditions,
 };
 
 */
 
 export const getFloatVal = (val) => (val ? parseFloat(parseFloat(val).toFixed(2)) : null);
 
-export const getCartData = () => {
-  // if (process.browser) {
-  const existingCart = localStorage.getItem(process.env.NEXT_PUBLIC_CART);
-  if (existingCart) {
-    return JSON.parse(existingCart);
-  }
-  return null;
-  // }
-  // return false;
+export const incrementItem = (current, max) => {
+  const count = current > (max || 999) ? current : current + 1;
+  return count;
 };
 
-export const getProductFromCart = (rowId) => {
-  const cart = getCartData();
-  if (cart) {
-    const foundItem = cart.find((item) => item.itemId === rowId);
-    return foundItem || null;
+export const decrementItem = (current) => {
+  const count = current === 1 ? 1 : current - 1;
+  return count;
+};
+
+export const getCartData = () => {
+  if (process.browser) {
+    const existingCart = localStorage.getItem(process.env.NEXT_PUBLIC_CART);
+    if (existingCart) {
+      return JSON.parse(existingCart);
+    }
+    return null;
   }
-  return null;
+  return false;
+};
+
+const updateCartLocalStorage = (data) => {
+  localStorage.setItem(process.env.NEXT_PUBLIC_CART, JSON.stringify(data));
+};
+
+export const getCartProductsCount = () => {
+  const cart = getCartData();
+  return cart ? cart.totalItems : null;
+};
+
+export const isInCart = (id) => {
+  const cart = getCartData();
+  const items = cart ? cart.items : null;
+
+  if (items) {
+    return items.some((item) => item.productId === id);
+  }
+  return false;
 };
 
 export const addToCart = (product, quantity, variations = null) => {
@@ -75,17 +97,17 @@ export const addToCart = (product, quantity, variations = null) => {
     };
 
     if (existingCart) {
+      // Update the cart with the latest product
       const { totalItems, items } = existingCart;
-
       items.push(cartItemData);
-      const updatedCartSubTotal = items.reduce((a, b) => a + b.itemTotalPrice, 0);
+      const updatedCartSubTotal = items.reduce((total, item) => total + item.itemTotalPrice, 0);
 
       existingCart.totalItems = totalItems + 1;
       existingCart.cartSubTotal = updatedCartSubTotal;
       existingCart.items = items;
       existingCart.cartTotal = updatedCartSubTotal;
 
-      localStorage.setItem(process.env.NEXT_PUBLIC_CART, JSON.stringify(existingCart));
+      updateCartLocalStorage(existingCart);
     } else {
       // Adding the first Item
       cart.totalItems = 1;
@@ -94,17 +116,42 @@ export const addToCart = (product, quantity, variations = null) => {
       cart.cartConditions = null;
       cart.cartTotal = cartItemData.itemTotalPrice;
 
-      localStorage.setItem(process.env.NEXT_PUBLIC_CART, JSON.stringify(cart));
+      updateCartLocalStorage(cart);
     }
+
+    return true;
   }
   return false;
 };
 
-export const clearCart = () => {
-  localStorage.removeItem(process.env.NEXT_PUBLIC_CART);
+export const getProductFromCart = (productId) => {
+  const cart = getCartData();
+  if (cart) {
+    const { items } = cart;
+    return items.find((item) => item.productId === productId);
+  }
+  return null;
 };
 
-export const updateCartItem = (rowId, data) => {
+export const removeProductFromCart = (productId) => {
+  const cart = getCartData();
+  const currentProduct = getProductFromCart(productId);
+  if (cart && currentProduct) {
+    const { totalItems, cartTotal, cartSubTotal, items } = cart;
+    const { itemId, itemTotalPrice } = currentProduct;
+    const updatedItems = items.filter((item) => item.itemId !== itemId);
+
+    cart.totalItems = totalItems - 1;
+    cart.cartSubTotal = cartSubTotal - itemTotalPrice;
+    cart.cartTotal = cartTotal - itemTotalPrice;
+    cart.items = updatedItems;
+
+    updateCartLocalStorage(cart);
+  }
+  return false;
+};
+
+export const updateProduct = (rowId, data) => {
   if (rowId) {
     const product = getProductFromCart(rowId);
     console.log(data);
@@ -118,12 +165,8 @@ export const updateCartItem = (rowId, data) => {
   }
 };
 
-export const getSubTotal = () => {
-  const cart = getCartData();
-  let subTotal = 0;
-  if (!cart) {
-    return subTotal;
-  }
-  cart.map((item) => (subTotal += item.summedPrice));
-  return subTotal;
+export const updateCart = () => {};
+
+export const clearCart = () => {
+  localStorage.removeItem(process.env.NEXT_PUBLIC_CART);
 };

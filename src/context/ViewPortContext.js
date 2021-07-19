@@ -17,6 +17,7 @@ export const ViewportProvider = ({ children }) => {
     resizeID = setTimeout(doneResizing, 500);
   };
 
+  /* eslint react-hooks/exhaustive-deps: "off" */
   useEffect(() => {
     setWidth(window.innerWidth);
     setHeight(window.innerHeight);

@@ -1,6 +1,9 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+
+import { CartContext } from '../../context/CartContext';
+
 import useFixedHeader from '../../hooks/useFixedHeader';
 import CategoryDropdown from './partials/CategoryDropdown';
 import Navigation from './partials/Navigation';
@@ -13,6 +16,9 @@ import SearchIcon from '../../../public/images/icons/search.svg';
 const MainHeader = () => {
   const isHeaderFixed = useFixedHeader();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [globalCart] = useContext(CartContext);
+
+  const totalProducts = globalCart && globalCart.totalItems !== 0 ? globalCart.totalItems : null;
 
   const handleSearchPopupOpen = () => {
     setIsSearchOpen(true);
@@ -79,9 +85,11 @@ const MainHeader = () => {
                   <span className="svg_icon w-[1.2rem] group-hover:text-white">
                     <CartIcon />
                   </span>
-                  {/* <span className="bg-theme_green text-white h-5 w-5 rounded-full flex items-center justify-center absolute -top-2 -right-3">
-                    3
-                  </span> */}
+                  {totalProducts && (
+                    <span className="bg-theme_green text-white font-semibold text-xs h-5 w-5 rounded-full flex items-center justify-center absolute -top-2 -right-3">
+                      {totalProducts}
+                    </span>
+                  )}
                 </a>
               </Link>
             </div>

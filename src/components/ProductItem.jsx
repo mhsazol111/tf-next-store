@@ -111,6 +111,9 @@ const ProductItem = ({ product, item }) => {
                   animate: { y: 0, opacity: 1, transition: { duration: 0.3 } },
                 }}
                 className="product_interactive_wrap relative z-5 flex justify-between items-center bg-theme_gray py-1 mt-4 rounded-full"
+                onClick={(e) => {
+                  e.preventDefault();
+                }}
               >
                 <button
                   type="button"
