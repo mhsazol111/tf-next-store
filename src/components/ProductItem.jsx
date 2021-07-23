@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import InView from './utilities/inView';
+import InView from './widgets/inView';
 
-import StarRating from './utilities/StarRating';
+import StarRating from './widgets/StarRating';
 // import CartIcon from '../../public/images/icons/cart.svg';
 import HeartIcon from '../../public/images/icons/heart.svg';
 import EyeIcon from '../../public/images/icons/eye.svg';
@@ -14,7 +14,7 @@ import useViewport from '../hooks/useViewport';
 import ProductQuickView from './ProductQuickView';
 import { focusClasses } from '../services/dummyAPI';
 
-import AddToCartIcon from './utilities/AddToCartIcon';
+import AddToCartIcon from './widgets/AddToCartIcon';
 
 const ProductItem = ({ product, item }) => {
   const { width } = useViewport();

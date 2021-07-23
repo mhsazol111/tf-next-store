@@ -65,26 +65,22 @@ const updateCartLocalStorage = (data) => {
   localStorage.setItem(process.env.NEXT_PUBLIC_CART, JSON.stringify(data));
 };
 
-export const getCartProductsCount = () => {
-  const cart = getCartData();
-  return cart ? cart.totalItems : null;
-};
-
-export const isInCart = (id) => {
+export const isInCart = (productId) => {
   const cart = getCartData();
   const items = cart ? cart.items : null;
 
   if (items) {
-    return items.some((item) => item.productId === id);
+    return items.some((item) => item.productId === productId);
   }
   return false;
 };
 
-export const getProductFromCart = (productId) => {
+export const getItemIdFromCart = (productId) => {
   const cart = getCartData();
   if (cart) {
     const { items } = cart;
-    return items.find((item) => item.productId === productId);
+    const matchedItem = items.find((item) => item.productId === productId);
+    return matchedItem.itemId;
   }
   return null;
 };
@@ -144,7 +140,8 @@ export const addToCart = (product, quantity, variations = null) => {
 
 export const removeProductFromCart = (productId) => {
   const cart = getCartData();
-  const currentProduct = getProductFromCart(productId);
+  const currentItemId = getItemIdFromCart(productId);
+  const currentProduct = getItemFromCart(currentItemId);
   if (cart && currentProduct) {
     const { totalItems, cartTotal, cartSubTotal, items } = cart;
     const { itemId, itemTotalPrice } = currentProduct;

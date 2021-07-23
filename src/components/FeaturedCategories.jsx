@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import useViewport from '../hooks/useViewport';
 import { ease } from '../services/animation';
-import InView from './utilities/inView';
+import InView from './widgets/inView';
 
 const FeaturedCategories = () => {
   const { width } = useViewport();

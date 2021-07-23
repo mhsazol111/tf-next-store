@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import LoginPopup from '../login/LoginPopup';
+import LoginPopup from '../widgets/LoginPopup';
 
 import PhoneIcon from '../../../public/images/icons/telephone.svg';
 import EnvelopeIcon from '../../../public/images/icons/mail.svg';

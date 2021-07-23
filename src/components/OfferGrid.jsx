@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { focusClasses } from '../services/dummyAPI';
-import InView from './utilities/inView';
+import InView from './widgets/inView';
 
 const OfferGrid = () => (
   <InView

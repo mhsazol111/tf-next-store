@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { focusClasses } from '../services/dummyAPI';
-import InView from './utilities/inView';
+import InView from './widgets/inView';
 
 const NewsLetter = () => (
   <InView

@@ -4,8 +4,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import dummyProducts, { focusClasses } from '../services/dummyAPI';
 import useViewport from '../hooks/useViewport';
-import InView from './utilities/inView';
-import StarRating from './utilities/StarRating';
+import InView from './widgets/inView';
+import StarRating from './widgets/StarRating';
 
 import LeftArrow from '../../public/images/icons/back.svg';
 import RightArrow from '../../public/images/icons/next.svg';

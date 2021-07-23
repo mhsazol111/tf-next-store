@@ -8,6 +8,8 @@ import {
   decrementItem,
   removeProductFromCart,
   updateProduct,
+  getItemIdFromCart,
+  getItemFromCart,
 } from '../../services/cart';
 import CartIcon from '../../../public/images/icons/cart.svg';
 
@@ -22,7 +24,19 @@ const AddToCartIcon = ({ product }) => {
   const availableProducts = 150;
 
   // Check if product is already in the cart on initial load
-  useEffect(() => (isInCart(product.id) ? setInCart(true) : setInCart(false)), [product.id]);
+  useEffect(() => {
+    const inCartStatus = isInCart(product.id);
+    if (inCartStatus) {
+      setInCart(true);
+
+      const itemId = getItemIdFromCart(product.id);
+      const itemFromCart = getItemFromCart(itemId);
+
+      setQuantity(itemFromCart.quantity);
+    } else {
+      setInCart(false);
+    }
+  }, [product.id, globalCart, inCart]);
 
   const updateGlobalCart = () => {
     const cartData = getCartData();

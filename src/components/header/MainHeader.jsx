@@ -8,6 +8,7 @@ import useFixedHeader from '../../hooks/useFixedHeader';
 import CategoryDropdown from './partials/CategoryDropdown';
 import Navigation from './partials/Navigation';
 import SearchPopup from '../search/SearchPopup';
+import CartSidebar from '../widgets/CartSidebar';
 
 import HeartIcon from '../../../public/images/icons/heart.svg';
 import CartIcon from '../../../public/images/icons/cart.svg';
@@ -16,6 +17,7 @@ import SearchIcon from '../../../public/images/icons/search.svg';
 const MainHeader = () => {
   const isHeaderFixed = useFixedHeader();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isCartSidebarOpen, setIsCartSidebarOpen] = useState(false);
   const [globalCart] = useContext(CartContext);
 
   const totalProducts = globalCart && globalCart.totalItems !== 0 ? globalCart.totalItems : null;
@@ -26,6 +28,14 @@ const MainHeader = () => {
 
   const handleSearchPopupClose = () => {
     setIsSearchOpen(false);
+  };
+
+  const handleCartSidebarOpen = () => {
+    setIsCartSidebarOpen(true);
+  };
+
+  const handleCartSidebarClose = () => {
+    setIsCartSidebarOpen(false);
   };
 
   return (
@@ -80,19 +90,29 @@ const MainHeader = () => {
             </div>
 
             <div className="header_icon_wrap mr-3">
-              <Link href="/cart">
-                <a className="relative bg-theme_green-300 text-black p-2 rounded-lg flex group focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-offset-2 focus-visible:ring-opacity-75">
-                  <span className="svg_icon w-[1.2rem] group-hover:text-white">
-                    <CartIcon />
+              <button
+                type="button"
+                onClick={handleCartSidebarOpen}
+                className="relative bg-theme_green-300 text-black p-2 rounded-lg flex group focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-offset-2 focus-visible:ring-opacity-75"
+              >
+                <span className="svg_icon w-[1.2rem] group-hover:text-white">
+                  <CartIcon />
+                </span>
+                {totalProducts && (
+                  <span className="bg-theme_green text-white font-semibold text-xs h-5 w-5 rounded-full flex items-center justify-center absolute -top-2 -right-3">
+                    {totalProducts}
                   </span>
-                  {totalProducts && (
-                    <span className="bg-theme_green text-white font-semibold text-xs h-5 w-5 rounded-full flex items-center justify-center absolute -top-2 -right-3">
-                      {totalProducts}
-                    </span>
-                  )}
-                </a>
-              </Link>
+                )}
+              </button>
             </div>
+
+            <CartSidebar
+              status={isCartSidebarOpen}
+              onOpen={handleCartSidebarOpen}
+              onClose={handleCartSidebarClose}
+              cart={globalCart}
+              totalItems={totalProducts}
+            />
 
             <CategoryDropdown />
           </div>

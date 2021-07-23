@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import SkeletonElement from '../../utilities/SkeletonElement';
+import SkeletonElement from '../../widgets/SkeletonElement';
 
 const SearchSkeleton = () => {
   const arr = [1, 2, 3, 4];

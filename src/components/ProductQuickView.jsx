@@ -8,7 +8,7 @@ import {
   quickViewItemRevealAnimation,
 } from '../services/animation';
 
-import StarRating from './utilities/StarRating';
+import StarRating from './widgets/StarRating';
 import CloseIcon from '../../public/images/icons/close.svg';
 import { focusClasses } from '../services/dummyAPI';
 

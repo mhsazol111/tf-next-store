@@ -1,11 +1,11 @@
 import { motion } from 'framer-motion';
 import { ease } from '../src/services/animation';
-import Layout from '../src/components/utilities/Layout';
-import InView from '../src/components/utilities/inView';
+import Layout from '../src/components/widgets/Layout';
+import InView from '../src/components/widgets/inView';
 import HomeSlider from '../src/components/HomeSlider';
 import FeaturedCategories from '../src/components/FeaturedCategories';
 import OfferGrid from '../src/components/OfferGrid';
-import InteractiveIcon from '../src/components/utilities/InterativeIcon';
+import InteractiveIcon from '../src/components/widgets/InterativeIcon';
 import PopularCategories from '../src/components/PopularCategories';
 import NewsLetter from '../src/components/NewsLetter';
 import ProductGrid from '../src/components/ProductGrid';
