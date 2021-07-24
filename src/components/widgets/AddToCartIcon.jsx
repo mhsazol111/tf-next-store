@@ -6,17 +6,17 @@ import {
   incrementItem,
   isInCart,
   decrementItem,
-  removeProductFromCart,
   updateProduct,
   getItemIdFromCart,
   getItemFromCart,
+  removeItemFromCart,
 } from '../../services/cart';
 import CartIcon from '../../../public/images/icons/cart.svg';
 
 import { focusClasses } from '../../services/dummyAPI';
 import style from '../../assets/scss/productItem.module.scss';
 
-const AddToCartIcon = ({ product }) => {
+const AddToCartIcon = ({ product, buttonHtml, buttonClass }) => {
   const [inCart, setInCart] = useState(false);
   const [quantity, setQuantity] = useState(1);
   /* eslint no-unused-vars: "off" */
@@ -60,7 +60,8 @@ const AddToCartIcon = ({ product }) => {
       updateProduct(product.id, { quantity: value });
       updateGlobalCart();
     } else {
-      removeProductFromCart(product.id);
+      const currentItemId = getItemIdFromCart(product.id);
+      removeItemFromCart(currentItemId);
       updateGlobalCart();
 
       setInCart(false);
@@ -89,6 +90,7 @@ const AddToCartIcon = ({ product }) => {
   return (
     <>
       {inCart ? (
+        /* eslint no-nested-ternary: "off"  */
         <div className="quantity_area flex items-center bg-white rounded-full py-[2px]">
           <button
             type="button"
@@ -113,6 +115,10 @@ const AddToCartIcon = ({ product }) => {
             +
           </button>
         </div>
+      ) : buttonHtml ? (
+        <button type="button" onClick={handleAddToCart} className={buttonClass}>
+          {buttonHtml}
+        </button>
       ) : (
         <button
           onClick={handleAddToCart}

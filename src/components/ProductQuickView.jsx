@@ -11,6 +11,7 @@ import {
 import StarRating from './widgets/StarRating';
 import CloseIcon from '../../public/images/icons/close.svg';
 import { focusClasses } from '../services/dummyAPI';
+import AddToCartIcon from './widgets/AddToCartIcon';
 
 const ProductQuickView = ({ status, onClose, product }) => {
   const responsive = {
@@ -101,12 +102,7 @@ const ProductQuickView = ({ status, onClose, product }) => {
                     variants={quickViewItemRevealAnimation}
                     className="flex flex-wrap items-center mt-4"
                   >
-                    <button
-                      type="button"
-                      className={`text-xs uppercase font-semibold bg-yellow-300 hover:bg-yellow-400 px-4 py-2 mr-2 rounded ${focusClasses}`}
-                    >
-                      Add to cart
-                    </button>
+                    <AddToCartIcon product={product} buttonHtml={<CartButton />} />
                     <span className="text-xs">(Stock: 85 available)</span>
                   </motion.div>
                 </div>
@@ -118,5 +114,13 @@ const ProductQuickView = ({ status, onClose, product }) => {
     </AnimatePresence>
   );
 };
+
+const CartButton = () => (
+  <div
+    className={`text-xs uppercase font-semibold bg-yellow-300 hover:bg-yellow-400 px-4 py-2 mr-2 rounded ${focusClasses}`}
+  >
+    Add to cart
+  </div>
+);
 
 export default ProductQuickView;

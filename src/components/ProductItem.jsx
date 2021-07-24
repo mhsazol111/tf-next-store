@@ -5,7 +5,6 @@ import Link from 'next/link';
 import InView from './widgets/inView';
 
 import StarRating from './widgets/StarRating';
-// import CartIcon from '../../public/images/icons/cart.svg';
 import HeartIcon from '../../public/images/icons/heart.svg';
 import EyeIcon from '../../public/images/icons/eye.svg';
 

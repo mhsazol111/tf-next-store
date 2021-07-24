@@ -27,7 +27,7 @@ export const overlayAnimation = {
     opacity: 1,
     transition: { when: 'beforeChildren', staggerChildren: 0.15, duration: 0.3 },
   },
-  exit: { opacity: 0, transition: { when: 'afterChildren', staggerChildren: 0.1, duration: 0.3 } },
+  exit: { opacity: 0 },
 };
 
 export const overlayWrapperReveal = {

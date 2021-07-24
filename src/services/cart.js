@@ -138,28 +138,26 @@ export const addToCart = (product, quantity, variations = null) => {
   return false;
 };
 
-export const removeProductFromCart = (productId) => {
+export const removeItemFromCart = (itemID) => {
   const cart = getCartData();
-  const currentItemId = getItemIdFromCart(productId);
-  const currentProduct = getItemFromCart(currentItemId);
+  const currentProduct = getItemFromCart(itemID);
   if (cart && currentProduct) {
     const { totalItems, cartTotal, cartSubTotal, items } = cart;
     const { itemId, itemTotalPrice } = currentProduct;
     const updatedItems = items.filter((item) => item.itemId !== itemId);
 
-    cart.totalItems = totalItems - 1;
-    cart.cartSubTotal = cartSubTotal - itemTotalPrice;
-    cart.cartTotal = cartTotal - itemTotalPrice;
-    cart.items = updatedItems;
+    if (updatedItems.length > 0) {
+      cart.totalItems = totalItems - 1;
+      cart.cartSubTotal = cartSubTotal - itemTotalPrice;
+      cart.cartTotal = cartTotal - itemTotalPrice;
+      cart.items = updatedItems;
 
-    updateCartLocalStorage(cart);
+      updateCartLocalStorage(cart);
+    } else {
+      localStorage.removeItem(process.env.NEXT_PUBLIC_CART);
+    }
   }
   return false;
-};
-
-export const removeItemFromCart = (itemId) => {
-  /* eslint no-console: "off" */
-  console.log(itemId);
 };
 
 export const updateProduct = (productId, data) => {
