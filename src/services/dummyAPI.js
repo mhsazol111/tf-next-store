@@ -1,4 +1,4 @@
-const dummyProducts = [
+export const dummyProducts = [
   {
     id: 1,
     title: 'Soothing Cleanser',
@@ -22,7 +22,7 @@ const dummyProducts = [
   {
     id: 2,
     title: 'Gentle Skin Cleanser',
-    slug: 'product-1',
+    slug: 'product-2',
     categories: ['skincare', 'facewash', 'facepack'],
     price: 30,
     sale_price: 25,
@@ -42,7 +42,7 @@ const dummyProducts = [
   {
     id: 3,
     title: 'Moisturizing Lotion',
-    slug: 'product-1',
+    slug: 'product-3',
     categories: ['skincare', 'facewash', 'facepack'],
     price: 30,
     rating: 5,
@@ -60,7 +60,7 @@ const dummyProducts = [
   {
     id: 4,
     title: 'Micro-Sculpting Cream',
-    slug: 'product-1',
+    slug: 'product-4',
     categories: ['skincare', 'facewash', 'facepack'],
     price: 18,
     sale_price: 15,
@@ -80,7 +80,7 @@ const dummyProducts = [
   {
     id: 5,
     title: 'Night Infusion Cream',
-    slug: 'product-1',
+    slug: 'product-5',
     categories: ['skincare', 'facewash', 'facepack'],
     price: 40,
     sale_price: 30,
@@ -100,7 +100,7 @@ const dummyProducts = [
   {
     id: 6,
     title: 'Night Moisturizer',
-    slug: 'product-1',
+    slug: 'product-6',
     categories: ['skincare', 'facewash', 'facepack'],
     price: 90,
     sale_price: 50,
@@ -120,7 +120,7 @@ const dummyProducts = [
   {
     id: 7,
     title: 'Restorative Cream',
-    slug: 'product-1',
+    slug: 'product-7',
     categories: ['skincare', 'facewash', 'facepack'],
     price: 100,
     sale_price: 70,
@@ -140,7 +140,7 @@ const dummyProducts = [
   {
     id: 8,
     title: 'Renewal B3 Serum',
-    slug: 'product-1',
+    slug: 'product-8',
     categories: ['skincare', 'facewash', 'facepack'],
     price: 30,
     sale_price: 25,
@@ -160,7 +160,7 @@ const dummyProducts = [
   {
     id: 9,
     title: 'Intense Advanced Serum',
-    slug: 'product-1',
+    slug: 'product-9',
     categories: ['skincare', 'facewash', 'facepack'],
     price: 40,
     sale_price: 30,
@@ -180,7 +180,7 @@ const dummyProducts = [
   {
     id: 10,
     title: 'Repair Concentrate Serum',
-    slug: 'product-1',
+    slug: 'product-10',
     categories: ['skincare', 'facewash', 'facepack'],
     price: 75,
     sale_price: 50,
@@ -200,7 +200,7 @@ const dummyProducts = [
   {
     id: 11,
     title: 'Repair Concentrate Serum',
-    slug: 'product-1',
+    slug: 'product-11',
     categories: ['skincare', 'facewash', 'facepack'],
     price: 30,
     sale_price: 20,
@@ -220,7 +220,7 @@ const dummyProducts = [
   {
     id: 12,
     title: 'Repair Concentrate Serum',
-    slug: 'product-1',
+    slug: 'product-12',
     categories: ['skincare', 'facewash', 'facepack'],
     price: 75,
     sale_price: 55,
@@ -240,7 +240,7 @@ const dummyProducts = [
   {
     id: 13,
     title: 'Repair Concentrate Serum',
-    slug: 'product-14',
+    slug: 'product-13',
     categories: ['skincare', 'facewash', 'facepack'],
     price: 95,
     sale_price: 70,
@@ -260,7 +260,7 @@ const dummyProducts = [
   {
     id: 14,
     title: 'Repair Concentrate Serum',
-    slug: 'product-1',
+    slug: 'product-14',
     categories: ['skincare', 'facewash', 'facepack'],
     price: 140,
     sale_price: 100,
@@ -279,7 +279,17 @@ const dummyProducts = [
   },
 ];
 
-export default dummyProducts;
+export const getProducts = () => dummyProducts;
+
+export const getProductById = (id) => {
+  const product = dummyProducts.filter((item) => item.id === id);
+  return product[0] || null;
+};
+
+export const getProductBySlug = (slug) => {
+  const product = dummyProducts.filter((item) => item.slug === slug);
+  return product[0] || null;
+};
 
 export const focusClasses =
   'focus:outline-none focus-visible:ring-2 focus-visible:ring-theme_green focus-visible:ring-opacity-75';

@@ -1,4 +1,4 @@
-import dummyProducts from '../services/dummyAPI';
+import { dummyProducts } from '../services/dummyAPI';
 import ProductItem from './ProductItem';
 
 const ProductGrid = () => {

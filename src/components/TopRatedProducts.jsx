@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import Carousel from 'react-multi-carousel';
 import Link from 'next/link';
 import Image from 'next/image';
-import dummyProducts, { focusClasses } from '../services/dummyAPI';
+import { dummyProducts, focusClasses } from '../services/dummyAPI';
 import useViewport from '../hooks/useViewport';
 import InView from './widgets/inView';
 import StarRating from './widgets/StarRating';
