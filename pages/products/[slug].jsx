@@ -1,14 +1,23 @@
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 // import { motion } from 'framer-motion';
-
-import { getProductBySlug, getProducts, focusClasses } from '../../src/services/dummyAPI';
+import { CartContext } from '../../src/context/CartContext';
+/* eslint no-unused-vars: "off" */
+import {
+  isInCart,
+  getCartData,
+  incrementItem,
+  decrementItem,
+  addToCart,
+  updateProduct,
+  getItemIdFromCart,
+  removeItemFromCart,
+} from '../../src/services/cart';
+import { getProductBySlug, getProducts } from '../../src/services/dummyAPI';
 import Layout from '../../src/components/widgets/Layout';
 import ProductGallerySlider from '../../src/components/product-details/ProductGallerySlider';
 import StarRating from '../../src/components/widgets/StarRating';
-
-import CartIcon from '../../public/images/icons/cart-solid.svg';
-import CreditCartIcon from '../../public/images/icons/credit-card.svg';
 import Variants from '../../src/components/product-details/Variants';
+import CartElements from '../../src/components/product-details/CartElements';
 
 // import styles from '../../src/assets/scss/productDetails.module.scss';
 
@@ -33,6 +42,10 @@ export const getStaticProps = async ({ params }) => {
 
 const Product = ({ product }) => {
   // console.log(product);
+  const [inCart, setInCart] = useState(false);
+  const [quantity, setQuantity] = useState(1);
+  const [globalCart, setGlobalCart] = useContext(CartContext);
+
   const [variants, setVariants] = useState([
     { id: 1, size: 'S', weight: '10gm', color: 'bg-pink-200', current: false },
     { id: 2, size: 'M', weight: '15gm', color: 'bg-yellow-200', current: true },
@@ -58,6 +71,72 @@ const Product = ({ product }) => {
 
     setVariants(oldVariants);
   };
+
+  const getSelectedVariants = () => {
+    const selected = variants.filter((item) => item.current === true);
+    return selected[0];
+  };
+
+  const updateGlobalCart = () => {
+    const cartData = getCartData();
+    setGlobalCart(cartData);
+  };
+
+  const handleIncrement = (e) => {
+    e.preventDefault();
+    const value = incrementItem(quantity, product.stock);
+    setQuantity(value);
+
+    // updateProduct(product.id, { quantity: value });
+    // updateGlobalCart();
+  };
+
+  const handleDecrement = (e) => {
+    e.preventDefault();
+
+    if (quantity > 1) {
+      const value = decrementItem(quantity);
+      setQuantity(value);
+      // updateProduct(product.id, { quantity: value });
+      // updateGlobalCart();
+    } else {
+      // const currentItemId = getItemIdFromCart(product.id);
+      // removeItemFromCart(currentItemId);
+      // updateGlobalCart();
+      // setInCart(false);
+    }
+  };
+
+  const handleOnChange = (e) => {
+    let value = e.target.value.replace(/[^0-9]/, '');
+    if (value <= product.stock) {
+      value = parseInt(value === '' ? 1 : value, 10);
+      setQuantity(value);
+      // updateProduct(product.id, { quantity: value });
+      // updateGlobalCart();
+    }
+  };
+
+  const handleAddToCart = () => {
+    addToCart(product, quantity);
+    setInCart(true);
+    updateGlobalCart();
+  };
+
+  // Check if product is already in the cart on initial load
+  // useEffect(() => {
+  //   const inCartStatus = isInCart(product.id);
+  //   if (inCartStatus) {
+  //     setInCart(true);
+
+  //     const itemId = getItemIdFromCart(product.id);
+  //     const itemFromCart = getItemFromCart(itemId);
+
+  //     setQuantity(itemFromCart.quantity);
+  //   } else {
+  //     setInCart(false);
+  //   }
+  // }, [product.id, globalCart, inCart]);
 
   return (
     <Layout>
@@ -86,64 +165,15 @@ const Product = ({ product }) => {
 
               <Variants variants={variants} onChange={handleVariantChange} />
 
-              <div className="font-bold text-4xl mt-10">
-                {product.sale_price && <span className="mr-3">${product.sale_price}</span>}
-                <span className={product.sale_price ? 'line-through text-gray-400 text-2xl' : ''}>
-                  ${product.price}
-                </span>
-              </div>
-
-              <div className="quantity_area flex items-center mt-5">
-                <button
-                  type="button"
-                  // onClick={handleDecrement}
-                  className={`${focusClasses} w-10 h-10 text-lg font-semibold bg-white rounded-xl hover:bg-theme_green-300`}
-                >
-                  -
-                </button>
-                <input
-                  type="text"
-                  name="cart_quantity"
-                  // onChange={handleQuantityChange}
-                  onChange={(e) => {
-                    e.preventDefault();
-                  }}
-                  // value={quantity}
-                  value={1}
-                  className={`${focusClasses} rounded-xl bg-white w-20 h-10 text-center font-semibold mx-3`}
-                />
-                <button
-                  type="button"
-                  // onClick={handleIncrement}
-                  // disabled={quantity >= (availableProducts || 99)}
-                  className={`${focusClasses} w-10 h-10 text-lg font-semibold bg-white rounded-xl hover:bg-theme_green-300`}
-                >
-                  +
-                </button>
-              </div>
-
-              <div className="flex items-center mt-10">
-                <button
-                  type="button"
-                  // onClick={handleIncrement}
-                  // disabled={quantity >= (availableProducts || 99)}
-                  className={`${focusClasses} flex items-center uppercase text-sm py-3 px-7 font-semibold bg-white shadow-lg rounded-full hover:bg-theme_green-300 mr-6`}
-                >
-                  <span className="svg_icon w-4 mr-2 mt-[-3px]">
-                    <CartIcon />
-                  </span>
-                  Add to Cart
-                </button>
-                <button
-                  type="button"
-                  className={`${focusClasses} flex items-center uppercase text-sm py-3 px-7 font-semibold bg-black text-white shadow-lg rounded-full hover:bg-yellow-200 hover:text-black`}
-                >
-                  <span className="svg_icon w-5 mr-2 mt-[-1px]">
-                    <CreditCartIcon />
-                  </span>
-                  Buy Now
-                </button>
-              </div>
+              <CartElements
+                product={product}
+                quantity={quantity}
+                onIncrement={handleIncrement}
+                onDecrement={handleDecrement}
+                onChange={handleOnChange}
+                onAddToCart={handleAddToCart}
+                variants={getSelectedVariants()}
+              />
             </div>
           </div>
         </div>

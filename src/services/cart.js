@@ -41,7 +41,7 @@ cart = {
 export const getFloatVal = (val) => (val ? parseFloat(parseFloat(val).toFixed(2)) : null);
 
 export const incrementItem = (current, max) => {
-  const count = current > (max || 999) ? current : current + 1;
+  const count = current >= (max || 999) ? current : current + 1;
   return count;
 };
 
@@ -65,7 +65,8 @@ const updateCartLocalStorage = (data) => {
   localStorage.setItem(process.env.NEXT_PUBLIC_CART, JSON.stringify(data));
 };
 
-export const isInCart = (productId) => {
+export const isInCart = (productId, variations = null) => {
+  console.log(variations);
   const cart = getCartData();
   const items = cart ? cart.items : null;
 
@@ -94,19 +95,19 @@ export const getItemFromCart = (itemId) => {
   return null;
 };
 
-export const addToCart = (product, quantity, variations = null) => {
+export const addToCart = (product, quantity = 1, variations = null) => {
   if (process.browser) {
     const cart = {};
     const existingCart = getCartData();
     const cartItemData = {
       itemId: `cid_${Date.now()}`,
       productId: product.id,
-      quantity: quantity || 1,
+      quantity,
       itemPrice: getFloatVal(product.sale_price || product.price),
-      itemSummedPrice: getFloatVal((quantity || 1) * (product.sale_price || product.price)),
+      itemSummedPrice: getFloatVal(quantity * (product.sale_price || product.price)),
       itemVariations: variations,
       conditions: null,
-      itemTotalPrice: getFloatVal((quantity || 1) * (product.sale_price || product.price)),
+      itemTotalPrice: getFloatVal(quantity * (product.sale_price || product.price)),
       product,
     };
 

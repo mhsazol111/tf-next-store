@@ -8,6 +8,8 @@ export const dummyProducts = [
     sale_price: 10,
     sale_percent: 10,
     rating: 5,
+    type: 2, // 1 = Simple Product, 2 = Variable Product
+    stock: 40,
     imageUrl: 'product-1.png',
     gallery: [
       { id: 1, url: 'product-1.png' },
@@ -28,10 +30,12 @@ export const dummyProducts = [
     sale_price: 25,
     sale_percent: 20,
     rating: 4,
+    type: 2, // 1 = Simple Product, 2 = Variable Product
+    stock: 44,
     imageUrl: 'product-2.png',
     gallery: [
-      { id: 1, url: 'product-1.png' },
-      { id: 2, url: 'product-2.png' },
+      { id: 1, url: 'product-2.png' },
+      { id: 2, url: 'product-6.png' },
       { id: 3, url: 'product-3.png' },
       { id: 4, url: 'product-6.png' },
       { id: 5, url: 'product-5.png' },
@@ -46,11 +50,13 @@ export const dummyProducts = [
     categories: ['skincare', 'facewash', 'facepack'],
     price: 30,
     rating: 5,
+    type: 2, // 1 = Simple Product, 2 = Variable Product
+    stock: 50,
     imageUrl: 'product-3.png',
     gallery: [
-      { id: 1, url: 'product-1.png' },
+      { id: 1, url: 'product-3.png' },
       { id: 2, url: 'product-2.png' },
-      { id: 3, url: 'product-3.png' },
+      { id: 3, url: 'product-7.png' },
       { id: 4, url: 'product-6.png' },
       { id: 5, url: 'product-5.png' },
     ],
@@ -66,13 +72,15 @@ export const dummyProducts = [
     sale_price: 15,
     sale_percent: 25,
     rating: 5,
+    type: 2, // 1 = Simple Product, 2 = Variable Product
+    stock: 10,
     imageUrl: 'product-5.png',
     gallery: [
-      { id: 1, url: 'product-1.png' },
+      { id: 1, url: 'product-5.png' },
       { id: 2, url: 'product-2.png' },
       { id: 3, url: 'product-3.png' },
       { id: 4, url: 'product-6.png' },
-      { id: 5, url: 'product-5.png' },
+      { id: 5, url: 'product-9.png' },
     ],
     imageWidth: 640,
     imageHeight: 640,
@@ -86,13 +94,15 @@ export const dummyProducts = [
     sale_price: 30,
     sale_percent: 30,
     rating: 5,
+    type: 2, // 1 = Simple Product, 2 = Variable Product
+    stock: 20,
     imageUrl: 'product-6.png',
     gallery: [
-      { id: 1, url: 'product-1.png' },
+      { id: 1, url: 'product-6.png' },
       { id: 2, url: 'product-2.png' },
       { id: 3, url: 'product-3.png' },
       { id: 4, url: 'product-6.png' },
-      { id: 5, url: 'product-5.png' },
+      { id: 5, url: 'product-10.png' },
     ],
     imageWidth: 640,
     imageHeight: 640,
@@ -106,9 +116,11 @@ export const dummyProducts = [
     sale_price: 50,
     sale_percent: 20,
     rating: 5,
+    type: 2, // 1 = Simple Product, 2 = Variable Product
+    stock: 10,
     imageUrl: 'product-7.png',
     gallery: [
-      { id: 1, url: 'product-1.png' },
+      { id: 1, url: 'product-7.png' },
       { id: 2, url: 'product-2.png' },
       { id: 3, url: 'product-3.png' },
       { id: 4, url: 'product-6.png' },
@@ -126,9 +138,11 @@ export const dummyProducts = [
     sale_price: 70,
     sale_percent: 20,
     rating: 5,
+    type: 2, // 1 = Simple Product, 2 = Variable Product
+    stock: 5,
     imageUrl: 'product-8.png',
     gallery: [
-      { id: 1, url: 'product-1.png' },
+      { id: 1, url: 'product-8.png' },
       { id: 2, url: 'product-2.png' },
       { id: 3, url: 'product-3.png' },
       { id: 4, url: 'product-6.png' },
@@ -146,9 +160,11 @@ export const dummyProducts = [
     sale_price: 25,
     sale_percent: 10,
     rating: 1,
+    type: 2, // 1 = Simple Product, 2 = Variable Product
+    stock: 30,
     imageUrl: 'product-9.png',
     gallery: [
-      { id: 1, url: 'product-1.png' },
+      { id: 1, url: 'product-9.png' },
       { id: 2, url: 'product-2.png' },
       { id: 3, url: 'product-3.png' },
       { id: 4, url: 'product-6.png' },
@@ -165,10 +181,12 @@ export const dummyProducts = [
     price: 40,
     sale_price: 30,
     sale_percent: 30,
-    rating: 2.4,
+    rating: 4,
+    type: 2, // 1 = Simple Product, 2 = Variable Product
+    stock: 15,
     imageUrl: 'product-10.png',
     gallery: [
-      { id: 1, url: 'product-1.png' },
+      { id: 1, url: 'product-10.png' },
       { id: 2, url: 'product-2.png' },
       { id: 3, url: 'product-3.png' },
       { id: 4, url: 'product-6.png' },
@@ -185,10 +203,12 @@ export const dummyProducts = [
     price: 75,
     sale_price: 50,
     sale_percent: 40,
-    rating: 2.4,
+    rating: 4,
+    type: 2, // 1 = Simple Product, 2 = Variable Product
+    stock: 70,
     imageUrl: 'product-11.png',
     gallery: [
-      { id: 1, url: 'product-1.png' },
+      { id: 1, url: 'product-11.png' },
       { id: 2, url: 'product-2.png' },
       { id: 3, url: 'product-3.png' },
       { id: 4, url: 'product-6.png' },
@@ -205,10 +225,12 @@ export const dummyProducts = [
     price: 30,
     sale_price: 20,
     sale_percent: 40,
-    rating: 2.4,
+    rating: 5,
+    type: 2, // 1 = Simple Product, 2 = Variable Product
+    stock: 40,
     imageUrl: 'product-12.png',
     gallery: [
-      { id: 1, url: 'product-1.png' },
+      { id: 1, url: 'product-12.png' },
       { id: 2, url: 'product-2.png' },
       { id: 3, url: 'product-3.png' },
       { id: 4, url: 'product-6.png' },
@@ -225,10 +247,12 @@ export const dummyProducts = [
     price: 75,
     sale_price: 55,
     sale_percent: 40,
-    rating: 2.4,
+    rating: 5,
+    type: 2, // 1 = Simple Product, 2 = Variable Product
+    stock: 60,
     imageUrl: 'product-13.png',
     gallery: [
-      { id: 1, url: 'product-1.png' },
+      { id: 1, url: 'product-13.png' },
       { id: 2, url: 'product-2.png' },
       { id: 3, url: 'product-3.png' },
       { id: 4, url: 'product-6.png' },
@@ -245,10 +269,12 @@ export const dummyProducts = [
     price: 95,
     sale_price: 70,
     sale_percent: 40,
-    rating: 2.4,
+    rating: 5,
+    type: 2, // 1 = Simple Product, 2 = Variable Product
+    stock: 20,
     imageUrl: 'product-14.png',
     gallery: [
-      { id: 1, url: 'product-1.png' },
+      { id: 1, url: 'product-14.png' },
       { id: 2, url: 'product-2.png' },
       { id: 3, url: 'product-3.png' },
       { id: 4, url: 'product-6.png' },
@@ -265,10 +291,12 @@ export const dummyProducts = [
     price: 140,
     sale_price: 100,
     sale_percent: 40,
-    rating: 2.4,
+    rating: 3,
+    type: 2, // 1 = Simple Product, 2 = Variable Product
+    stock: 40,
     imageUrl: 'product-15.png',
     gallery: [
-      { id: 1, url: 'product-1.png' },
+      { id: 1, url: 'product-15.png' },
       { id: 2, url: 'product-2.png' },
       { id: 3, url: 'product-3.png' },
       { id: 4, url: 'product-6.png' },

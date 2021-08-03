@@ -29,6 +29,14 @@ const ProductGallerySlider = ({ product }) => (
     customButtonGroup={<CustomArrows />}
     renderButtonGroupOutside
   >
+    {/* <div className="bg-white rounded-3xl flex items-center justify-center min-h-[600px]">
+      <Image
+        src={`/images/products/${product.imageUrl}`}
+        width={400}
+        height={400}
+        alt={product.title}
+      />
+    </div> */}
     {product.gallery.map((item) => (
       <div
         key={item.id}

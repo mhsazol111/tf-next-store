@@ -21,7 +21,6 @@ const AddToCartIcon = ({ product, buttonHtml, buttonClass }) => {
   const [quantity, setQuantity] = useState(1);
   /* eslint no-unused-vars: "off" */
   const [globalCart, setGlobalCart] = useContext(CartContext);
-  const availableProducts = 150;
 
   // Check if product is already in the cart on initial load
   useEffect(() => {
@@ -45,7 +44,7 @@ const AddToCartIcon = ({ product, buttonHtml, buttonClass }) => {
 
   const handleIncrement = (e) => {
     e.preventDefault();
-    const value = incrementItem(quantity, availableProducts);
+    const value = incrementItem(quantity, product.stock);
     setQuantity(value);
     updateProduct(product.id, { quantity: value });
     updateGlobalCart();
@@ -79,7 +78,7 @@ const AddToCartIcon = ({ product, buttonHtml, buttonClass }) => {
 
   const handleQuantityChange = (e) => {
     let value = e.target.value.replace(/[^0-9]/, '');
-    if (value <= availableProducts) {
+    if (value <= product.stock) {
       value = parseInt(value === '' ? 1 : value, 10);
       setQuantity(value);
       updateProduct(product.id, { quantity: value });
@@ -109,7 +108,7 @@ const AddToCartIcon = ({ product, buttonHtml, buttonClass }) => {
           <button
             type="button"
             onClick={handleIncrement}
-            disabled={quantity >= (availableProducts || 99)}
+            disabled={quantity >= (product.stock || 99)}
             className={`${focusClasses} w-[20px] h-[20px] mx-[4px] bg-theme_gray rounded-2xl hover:bg-theme_green-200`}
           >
             +
