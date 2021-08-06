@@ -1,7 +1,6 @@
 import { useState, useContext, useEffect } from 'react';
 // import { motion } from 'framer-motion';
 import { CartContext } from '../../src/context/CartContext';
-/* eslint no-unused-vars: "off" */
 import {
   isInCart,
   getCartData,
@@ -9,6 +8,7 @@ import {
   decrementItem,
   addToCart,
   updateProduct,
+  getItemFromCart,
   getItemIdFromCart,
   removeItemFromCart,
 } from '../../src/services/cart';
@@ -16,7 +16,7 @@ import { getProductBySlug, getProducts } from '../../src/services/dummyAPI';
 import Layout from '../../src/components/widgets/Layout';
 import ProductGallerySlider from '../../src/components/product-details/ProductGallerySlider';
 import StarRating from '../../src/components/widgets/StarRating';
-import Variants from '../../src/components/product-details/Variants';
+import Variations from '../../src/components/product-details/Variations';
 import CartElements from '../../src/components/product-details/CartElements';
 
 // import styles from '../../src/assets/scss/productDetails.module.scss';
@@ -41,40 +41,69 @@ export const getStaticProps = async ({ params }) => {
 };
 
 const Product = ({ product }) => {
-  // console.log(product);
   const [inCart, setInCart] = useState(false);
-  const [quantity, setQuantity] = useState(1);
   const [globalCart, setGlobalCart] = useContext(CartContext);
 
-  const [variants, setVariants] = useState([
-    { id: 1, size: 'S', weight: '10gm', color: 'bg-pink-200', current: false },
-    { id: 2, size: 'M', weight: '15gm', color: 'bg-yellow-200', current: true },
-    { id: 3, size: 'L', weight: '30gm', color: 'bg-purple-200', current: false },
-    { id: 4, size: 'XL', weight: '50gm', color: 'bg-theme_green-300', current: false },
-  ]);
+  const { type } = product;
+  const [quantity, setQuantity] = useState(1);
+  const [variations, setVariations] = useState(type === 1 ? null : [...product.variations]);
+  const [selectedVariant, setSelectedVariant] = useState(type === 1 ? null : variations[0]);
+  const [price, setPrice] = useState(type === 1 ? product.price : null);
+  const [salePrice, setSalePrice] = useState(type === 1 ? product.sale_price : null);
+  const [stock, setStock] = useState(type === 1 ? product.stock : null);
+  const [subTotal, setSubTotal] = useState(type === 1 ? salePrice || price : null);
+  const currentProductID = type === 1 ? product.id : selectedVariant.id;
+
+  // Checks if the product or variant is in the cart
+  const checkCartStatus = (productId) => {
+    const inCartStatus = isInCart(productId);
+
+    if (inCartStatus) {
+      const itemId = getItemIdFromCart(productId);
+      const itemFromCart = getItemFromCart(itemId);
+
+      setInCart(true);
+      setQuantity(itemFromCart.quantity);
+      setSubTotal(itemFromCart.itemSummedPrice);
+    } else {
+      setInCart(false);
+    }
+  };
+
+  const updateInitialVariant = () => {
+    selectedVariant.current = true;
+    setPrice(selectedVariant.price);
+    setSalePrice(selectedVariant.sale_price);
+    setStock(selectedVariant.stock);
+  };
+
+  const updateVariantInfo = (variant) => {
+    setPrice(variant.price);
+    setSalePrice(variant.sale_price);
+    setStock(variant.stock);
+
+    setQuantity(1);
+  };
 
   const handleVariantChange = (id) => {
-    const oldVariants = [...variants];
-    const inActiveItems = oldVariants.filter((item) => item.current === true);
+    const oldVariations = [...variations];
+    const inActiveItems = oldVariations.filter((item) => item.current === true);
 
     /* eslint array-callback-return: "off" */
     inActiveItems.map((item) => {
-      const itemIndex = oldVariants.indexOf(item);
-      oldVariants[itemIndex] = { ...oldVariants[itemIndex] };
-      oldVariants[itemIndex].current = false;
+      const itemIndex = oldVariations.indexOf(item);
+      oldVariations[itemIndex] = { ...oldVariations[itemIndex] };
+      oldVariations[itemIndex].current = false;
     });
 
-    const current = oldVariants.filter((item) => item.id === id);
-    const index = oldVariants.indexOf(current[0]);
-    oldVariants[index] = { ...oldVariants[index] };
-    oldVariants[index].current = true;
+    const current = oldVariations.filter((item) => item.id === id);
+    const index = oldVariations.indexOf(current[0]);
+    oldVariations[index] = { ...oldVariations[index] };
+    oldVariations[index].current = true;
 
-    setVariants(oldVariants);
-  };
-
-  const getSelectedVariants = () => {
-    const selected = variants.filter((item) => item.current === true);
-    return selected[0];
+    setSelectedVariant(oldVariations[index]);
+    setVariations(oldVariations);
+    updateVariantInfo(oldVariations[index]);
   };
 
   const updateGlobalCart = () => {
@@ -84,59 +113,63 @@ const Product = ({ product }) => {
 
   const handleIncrement = (e) => {
     e.preventDefault();
-    const value = incrementItem(quantity, product.stock);
+    const value = incrementItem(quantity, stock);
     setQuantity(value);
+    setSubTotal();
 
-    // updateProduct(product.id, { quantity: value });
-    // updateGlobalCart();
+    if (inCart) {
+      updateProduct(currentProductID, { quantity: value });
+      updateGlobalCart();
+    }
   };
 
   const handleDecrement = (e) => {
     e.preventDefault();
+    const value = decrementItem(quantity);
+    setQuantity(value);
 
-    if (quantity > 1) {
-      const value = decrementItem(quantity);
-      setQuantity(value);
-      // updateProduct(product.id, { quantity: value });
-      // updateGlobalCart();
-    } else {
-      // const currentItemId = getItemIdFromCart(product.id);
-      // removeItemFromCart(currentItemId);
-      // updateGlobalCart();
-      // setInCart(false);
+    if (inCart) {
+      updateProduct(currentProductID, { quantity: value });
+      updateGlobalCart();
     }
   };
 
   const handleOnChange = (e) => {
     let value = e.target.value.replace(/[^0-9]/, '');
-    if (value <= product.stock) {
+    if (value <= stock) {
       value = parseInt(value === '' ? 1 : value, 10);
       setQuantity(value);
-      // updateProduct(product.id, { quantity: value });
-      // updateGlobalCart();
+
+      if (inCart) {
+        updateProduct(currentProductID, { quantity: value });
+        updateGlobalCart();
+      }
     }
   };
 
   const handleAddToCart = () => {
-    addToCart(product, quantity);
+    addToCart(product, quantity, salePrice || price, selectedVariant);
     setInCart(true);
     updateGlobalCart();
   };
 
-  // Check if product is already in the cart on initial load
-  // useEffect(() => {
-  //   const inCartStatus = isInCart(product.id);
-  //   if (inCartStatus) {
-  //     setInCart(true);
+  const handleRemoveItem = (productId) => {
+    const itemId = getItemIdFromCart(productId);
+    removeItemFromCart(itemId);
+    setInCart(false);
+    setQuantity(1);
+    updateGlobalCart();
+  };
 
-  //     const itemId = getItemIdFromCart(product.id);
-  //     const itemFromCart = getItemFromCart(itemId);
-
-  //     setQuantity(itemFromCart.quantity);
-  //   } else {
-  //     setInCart(false);
-  //   }
-  // }, [product.id, globalCart, inCart]);
+  /* eslint react-hooks/exhaustive-deps: "off" */
+  useEffect(() => {
+    if (type === 2) {
+      updateInitialVariant(); // If variable product Set the first variant active, price, sale_price, stock
+      checkCartStatus(selectedVariant.id);
+    } else {
+      checkCartStatus(product.id);
+    }
+  }, [selectedVariant, globalCart]);
 
   return (
     <Layout>
@@ -148,7 +181,7 @@ const Product = ({ product }) => {
             </div>
 
             <div className="product_info w-full lg:w-1/2 pl-8 pt-10">
-              <div className="mb-5 flex items-center text-lg">
+              <div className="pb-5 flex items-center text-lg">
                 <div className="mr-3 text-base">Rated:</div>
                 <StarRating value={product.rating} />
                 <div className="text-sm ml-2">(10)</div>
@@ -163,16 +196,21 @@ const Product = ({ product }) => {
                 Architecto quo inventore
               </div>
 
-              <Variants variants={variants} onChange={handleVariantChange} />
+              {variations && <Variations variations={variations} onChange={handleVariantChange} />}
 
               <CartElements
-                product={product}
+                productId={type === 1 ? product.id : selectedVariant.id}
+                price={price}
+                salePrice={salePrice}
+                stock={stock}
                 quantity={quantity}
+                inCart={inCart}
+                subTotal={subTotal}
                 onIncrement={handleIncrement}
                 onDecrement={handleDecrement}
                 onChange={handleOnChange}
                 onAddToCart={handleAddToCart}
-                variants={getSelectedVariants()}
+                onRemoveItem={handleRemoveItem}
               />
             </div>
           </div>

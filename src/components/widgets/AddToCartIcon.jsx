@@ -16,26 +16,52 @@ import CartIcon from '../../../public/images/icons/cart.svg';
 import { focusClasses } from '../../services/dummyAPI';
 import style from '../../assets/scss/productItem.module.scss';
 
-const AddToCartIcon = ({ product, buttonHtml, buttonClass }) => {
+const AddToCartIcon = ({ product, productId, buttonHtml, buttonClass }) => {
   const [inCart, setInCart] = useState(false);
-  const [quantity, setQuantity] = useState(1);
-  /* eslint no-unused-vars: "off" */
   const [globalCart, setGlobalCart] = useContext(CartContext);
 
-  // Check if product is already in the cart on initial load
-  useEffect(() => {
-    const inCartStatus = isInCart(product.id);
-    if (inCartStatus) {
-      setInCart(true);
+  /* eslint no-unused-vars: "off" */
+  const { type } = product;
+  const [quantity, setQuantity] = useState(1);
+  const [variations, setVariations] = useState(type === 1 ? null : [...product.variations]);
+  const [selectedVariant, setSelectedVariant] = useState(type === 1 ? null : variations[0]);
+  const [price, setPrice] = useState(type === 1 ? product.price : null);
+  const [salePrice, setSalePrice] = useState(type === 1 ? product.sale_price : null);
+  const [stock, setStock] = useState(type === 1 ? product.stock : null);
+  const [subTotal, setSubTotal] = useState(type === 1 ? salePrice || price : null);
 
-      const itemId = getItemIdFromCart(product.id);
+  // Checks if the product or variant is in the cart
+  const checkCartStatus = (id) => {
+    const inCartStatus = isInCart(id);
+
+    if (inCartStatus) {
+      const itemId = getItemIdFromCart(id);
       const itemFromCart = getItemFromCart(itemId);
 
+      setInCart(true);
       setQuantity(itemFromCart.quantity);
     } else {
       setInCart(false);
     }
-  }, [product.id, globalCart, inCart]);
+  };
+
+  const updateInitialVariant = () => {
+    selectedVariant.current = true;
+    setPrice(selectedVariant.price);
+    setSalePrice(selectedVariant.sale_price);
+    setStock(selectedVariant.stock);
+  };
+
+  // Check if product is already in the cart on initial load
+  /* eslint react-hooks/exhaustive-deps: "off" */
+  useEffect(() => {
+    if (type === 2) {
+      updateInitialVariant(); // If variable product Set the first variant active, price, sale_price, stock
+      checkCartStatus(productId);
+    } else {
+      checkCartStatus(product.id);
+    }
+  }, [globalCart]);
 
   const updateGlobalCart = () => {
     const cartData = getCartData();
@@ -44,9 +70,10 @@ const AddToCartIcon = ({ product, buttonHtml, buttonClass }) => {
 
   const handleIncrement = (e) => {
     e.preventDefault();
-    const value = incrementItem(quantity, product.stock);
+    const value = incrementItem(quantity, stock);
     setQuantity(value);
-    updateProduct(product.id, { quantity: value });
+
+    updateProduct(productId, { quantity: value });
     updateGlobalCart();
   };
 
@@ -56,24 +83,15 @@ const AddToCartIcon = ({ product, buttonHtml, buttonClass }) => {
     if (quantity > 1) {
       const value = decrementItem(quantity);
       setQuantity(value);
-      updateProduct(product.id, { quantity: value });
+
+      updateProduct(productId, { quantity: value });
       updateGlobalCart();
     } else {
-      const currentItemId = getItemIdFromCart(product.id);
+      const currentItemId = getItemIdFromCart(productId);
       removeItemFromCart(currentItemId);
-      updateGlobalCart();
-
       setInCart(false);
+      updateGlobalCart();
     }
-  };
-
-  const handleAddToCart = (e) => {
-    e.preventDefault();
-
-    addToCart(product);
-    setInCart(true);
-    setQuantity(1);
-    updateGlobalCart();
   };
 
   const handleQuantityChange = (e) => {
@@ -81,9 +99,18 @@ const AddToCartIcon = ({ product, buttonHtml, buttonClass }) => {
     if (value <= product.stock) {
       value = parseInt(value === '' ? 1 : value, 10);
       setQuantity(value);
-      updateProduct(product.id, { quantity: value });
+
+      updateProduct(productId, { quantity: value });
       updateGlobalCart();
     }
+  };
+
+  const handleAddToCart = (e) => {
+    e.preventDefault();
+    addToCart(product, quantity, salePrice || price, selectedVariant);
+    setInCart(true);
+    setQuantity(1);
+    updateGlobalCart();
   };
 
   return (

@@ -65,8 +65,7 @@ const updateCartLocalStorage = (data) => {
   localStorage.setItem(process.env.NEXT_PUBLIC_CART, JSON.stringify(data));
 };
 
-export const isInCart = (productId, variations = null) => {
-  console.log(variations);
+export const isInCart = (productId) => {
   const cart = getCartData();
   const items = cart ? cart.items : null;
 
@@ -95,19 +94,20 @@ export const getItemFromCart = (itemId) => {
   return null;
 };
 
-export const addToCart = (product, quantity = 1, variations = null) => {
+export const addToCart = (product, quantity = 1, itemPrice, variant = null) => {
   if (process.browser) {
+    const { type } = product;
     const cart = {};
     const existingCart = getCartData();
     const cartItemData = {
       itemId: `cid_${Date.now()}`,
-      productId: product.id,
+      productId: type === 1 ? product.id : variant.id,
       quantity,
-      itemPrice: getFloatVal(product.sale_price || product.price),
-      itemSummedPrice: getFloatVal(quantity * (product.sale_price || product.price)),
-      itemVariations: variations,
+      itemPrice: getFloatVal(itemPrice),
+      itemSummedPrice: getFloatVal(quantity * itemPrice),
+      itemVariant: variant,
       conditions: null,
-      itemTotalPrice: getFloatVal(quantity * (product.sale_price || product.price)),
+      itemTotalPrice: getFloatVal(quantity * itemPrice),
       product,
     };
 
@@ -182,11 +182,6 @@ export const updateProduct = (productId, data) => {
 
     updateCartLocalStorage(cart);
   }
-};
-
-export const updateCart = () => {
-  /* eslint no-console: "off" */
-  console.log('cart updated');
 };
 
 export const clearCart = () => {

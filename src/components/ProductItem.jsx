@@ -17,6 +17,8 @@ import AddToCartIcon from './widgets/AddToCartIcon';
 
 const ProductItem = ({ product, item }) => {
   const { width } = useViewport();
+  const { type } = product;
+  const productId = type === 1 ? product.id : product.variations[0].id;
   const variants = {
     initial: { y: 30, opacity: 0 },
     animate: (custom) => ({
@@ -128,7 +130,7 @@ const ProductItem = ({ product, item }) => {
                     Wishlist
                   </span>
                 </button>
-                <AddToCartIcon product={product} />
+                <AddToCartIcon product={product} productId={productId} />
                 <button
                   onClick={(e) => {
                     e.preventDefault();

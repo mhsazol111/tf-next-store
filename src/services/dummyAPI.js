@@ -1,3 +1,28 @@
+export const attributes = [
+  {
+    id: 1,
+    title: 'Size',
+    slug: 'pa_size',
+    terms: [
+      { id: 1, title: 'S' },
+      { id: 2, title: 'M' },
+      { id: 3, title: 'L' },
+      { id: 4, title: 'XL' },
+    ],
+  },
+  {
+    id: 2,
+    title: 'Weight',
+    slug: 'pa_weight',
+    terms: [
+      { id: 1, title: '10gm' },
+      { id: 2, title: '15gm' },
+      { id: 3, title: '30gm' },
+      { id: 4, title: '50gm' },
+    ],
+  },
+];
+
 export const dummyProducts = [
   {
     id: 1,
@@ -8,7 +33,6 @@ export const dummyProducts = [
     sale_price: 10,
     sale_percent: 10,
     rating: 5,
-    type: 2, // 1 = Simple Product, 2 = Variable Product
     stock: 40,
     imageUrl: 'product-1.png',
     gallery: [
@@ -20,6 +44,41 @@ export const dummyProducts = [
     ],
     imageWidth: 640,
     imageHeight: 640,
+    type: 2, // 1 = Simple Product, 2 = Variable Product
+    variations: [
+      {
+        id: '1_v1',
+        price: 20,
+        sale_price: 15,
+        stock: 20,
+        attributes: ['S', '10gm'],
+        bgColor: 'bg-pink-200',
+      },
+      {
+        id: '1_v2',
+        price: 25,
+        sale_price: 20,
+        stock: 25,
+        attributes: ['M', '15gm'],
+        bgColor: 'bg-yellow-200',
+      },
+      {
+        id: '1_v3',
+        price: 30,
+        sale_price: 25,
+        stock: 16,
+        attributes: ['L', '30gm'],
+        bgColor: 'bg-purple-200',
+      },
+      {
+        id: '1_v4',
+        price: 40,
+        sale_price: 30,
+        stock: 10,
+        attributes: ['XL', '50gm'],
+        bgColor: 'bg-theme_green-300',
+      },
+    ],
   },
   {
     id: 2,
@@ -30,7 +89,6 @@ export const dummyProducts = [
     sale_price: 25,
     sale_percent: 20,
     rating: 4,
-    type: 2, // 1 = Simple Product, 2 = Variable Product
     stock: 44,
     imageUrl: 'product-2.png',
     gallery: [
@@ -42,6 +100,33 @@ export const dummyProducts = [
     ],
     imageWidth: 640,
     imageHeight: 640,
+    type: 2, // 1 = Simple Product, 2 = Variable Product
+    variations: [
+      {
+        id: '2_v1',
+        price: 14,
+        sale_price: 10,
+        stock: 20,
+        attributes: ['Small', 'Red'],
+        bgColor: 'bg-pink-200',
+      },
+      {
+        id: '2_v2',
+        price: 18,
+        sale_price: 15,
+        stock: 20,
+        attributes: ['Medium', 'Black'],
+        bgColor: 'bg-yellow-200',
+      },
+      {
+        id: '2_v3',
+        price: 27,
+        sale_price: 20,
+        stock: 16,
+        attributes: ['Large', 'White'],
+        bgColor: 'bg-purple-200',
+      },
+    ],
   },
   {
     id: 3,
@@ -50,7 +135,7 @@ export const dummyProducts = [
     categories: ['skincare', 'facewash', 'facepack'],
     price: 30,
     rating: 5,
-    type: 2, // 1 = Simple Product, 2 = Variable Product
+    type: 1, // 1 = Simple Product, 2 = Variable Product
     stock: 50,
     imageUrl: 'product-3.png',
     gallery: [
@@ -72,7 +157,7 @@ export const dummyProducts = [
     sale_price: 15,
     sale_percent: 25,
     rating: 5,
-    type: 2, // 1 = Simple Product, 2 = Variable Product
+    type: 1, // 1 = Simple Product, 2 = Variable Product
     stock: 10,
     imageUrl: 'product-5.png',
     gallery: [
@@ -94,7 +179,7 @@ export const dummyProducts = [
     sale_price: 30,
     sale_percent: 30,
     rating: 5,
-    type: 2, // 1 = Simple Product, 2 = Variable Product
+    type: 1, // 1 = Simple Product, 2 = Variable Product
     stock: 20,
     imageUrl: 'product-6.png',
     gallery: [
@@ -116,7 +201,7 @@ export const dummyProducts = [
     sale_price: 50,
     sale_percent: 20,
     rating: 5,
-    type: 2, // 1 = Simple Product, 2 = Variable Product
+    type: 1, // 1 = Simple Product, 2 = Variable Product
     stock: 10,
     imageUrl: 'product-7.png',
     gallery: [
@@ -138,7 +223,7 @@ export const dummyProducts = [
     sale_price: 70,
     sale_percent: 20,
     rating: 5,
-    type: 2, // 1 = Simple Product, 2 = Variable Product
+    type: 1, // 1 = Simple Product, 2 = Variable Product
     stock: 5,
     imageUrl: 'product-8.png',
     gallery: [
@@ -160,7 +245,7 @@ export const dummyProducts = [
     sale_price: 25,
     sale_percent: 10,
     rating: 1,
-    type: 2, // 1 = Simple Product, 2 = Variable Product
+    type: 1, // 1 = Simple Product, 2 = Variable Product
     stock: 30,
     imageUrl: 'product-9.png',
     gallery: [
@@ -182,7 +267,7 @@ export const dummyProducts = [
     sale_price: 30,
     sale_percent: 30,
     rating: 4,
-    type: 2, // 1 = Simple Product, 2 = Variable Product
+    type: 1, // 1 = Simple Product, 2 = Variable Product
     stock: 15,
     imageUrl: 'product-10.png',
     gallery: [
@@ -204,7 +289,7 @@ export const dummyProducts = [
     sale_price: 50,
     sale_percent: 40,
     rating: 4,
-    type: 2, // 1 = Simple Product, 2 = Variable Product
+    type: 1, // 1 = Simple Product, 2 = Variable Product
     stock: 70,
     imageUrl: 'product-11.png',
     gallery: [
@@ -226,7 +311,7 @@ export const dummyProducts = [
     sale_price: 20,
     sale_percent: 40,
     rating: 5,
-    type: 2, // 1 = Simple Product, 2 = Variable Product
+    type: 1, // 1 = Simple Product, 2 = Variable Product
     stock: 40,
     imageUrl: 'product-12.png',
     gallery: [
@@ -248,7 +333,7 @@ export const dummyProducts = [
     sale_price: 55,
     sale_percent: 40,
     rating: 5,
-    type: 2, // 1 = Simple Product, 2 = Variable Product
+    type: 1, // 1 = Simple Product, 2 = Variable Product
     stock: 60,
     imageUrl: 'product-13.png',
     gallery: [
@@ -270,7 +355,7 @@ export const dummyProducts = [
     sale_price: 70,
     sale_percent: 40,
     rating: 5,
-    type: 2, // 1 = Simple Product, 2 = Variable Product
+    type: 1, // 1 = Simple Product, 2 = Variable Product
     stock: 20,
     imageUrl: 'product-14.png',
     gallery: [
@@ -292,7 +377,7 @@ export const dummyProducts = [
     sale_price: 100,
     sale_percent: 40,
     rating: 3,
-    type: 2, // 1 = Simple Product, 2 = Variable Product
+    type: 1, // 1 = Simple Product, 2 = Variable Product
     stock: 40,
     imageUrl: 'product-15.png',
     gallery: [

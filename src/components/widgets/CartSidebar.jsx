@@ -4,13 +4,14 @@ import { Dialog } from '@headlessui/react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { overlayAnimation } from '../../services/animation';
-import { getCartData, removeItemFromCart } from '../../services/cart';
+import { clearCart, getCartData, removeItemFromCart } from '../../services/cart';
 import { CartContext } from '../../context/CartContext';
 import AddToCartIcon from './AddToCartIcon';
 
 import CloseIcon from '../../../public/images/icons/close.svg';
 import CartIcon from '../../../public/images/icons/cart.svg';
 import CheckoutIcon from '../../../public/images/icons/checkout.svg';
+import TrashIcon from '../../../public/images/icons/trash.svg';
 
 import { focusClasses } from '../../services/dummyAPI';
 
@@ -22,6 +23,11 @@ const CartSidebar = ({ status, onClose, totalItems, cart }) => {
     removeItemFromCart(itemId);
     const cartData = getCartData();
     setGlobalCart(cartData);
+  };
+
+  const handleClearCart = () => {
+    clearCart();
+    setGlobalCart(null);
   };
 
   return (
@@ -63,11 +69,11 @@ const CartSidebar = ({ status, onClose, totalItems, cart }) => {
                   },
                 }}
                 type="button"
-                onClick={onClose}
-                className={`absolute right-1 top-1 px-2 py-2 flex items-center justify-center rounded ${focusClasses}`}
+                onClick={handleClearCart}
+                className={`absolute right-3 top-3 bg-red-500 text-white hover:bg-black hover:text-white w-[28px] h-[28px] flex items-center justify-center rounded-full ${focusClasses}`}
               >
-                <span className="svg_icon w-3">
-                  <CloseIcon />
+                <span className="svg_icon w-[14px]">
+                  <TrashIcon />
                 </span>
               </motion.button>
               <motion.h3
@@ -135,7 +141,7 @@ const CartSidebar = ({ status, onClose, totalItems, cart }) => {
                               <CloseIcon />
                             </span>
                           </motion.button>
-                          <div className="bg-theme_blue p-2 mr-4">
+                          <div className="bg-theme_blue px-2 py-5 mr-4">
                             <Image
                               src={`/images/products/${item.product.imageUrl}`}
                               width={100}
@@ -145,6 +151,20 @@ const CartSidebar = ({ status, onClose, totalItems, cart }) => {
                           </div>
                           <div>
                             <h4 className="text-sm pb-1">{item.product.title}</h4>
+                            {item.itemVariant && (
+                              <div className="flex text-xs pb-2">
+                                <span
+                                  className={`mr-1 block px-[7px] py-[2px] rounded-xl ${item.itemVariant.bgColor}`}
+                                >
+                                  {item.itemVariant.attributes[0]}
+                                </span>
+                                <span
+                                  className={`block px-[7px] py-[2px] rounded-xl ${item.itemVariant.bgColor}`}
+                                >
+                                  {item.itemVariant.attributes[1]}
+                                </span>
+                              </div>
+                            )}
                             <p className="text-xs">
                               ${item.itemPrice} x {item.quantity}
                             </p>
@@ -157,7 +177,7 @@ const CartSidebar = ({ status, onClose, totalItems, cart }) => {
                                 e.preventDefault();
                               }}
                             >
-                              <AddToCartIcon product={item.product} />
+                              <AddToCartIcon product={item.product} productId={item.productId} />
                             </div>
                           </div>
                         </a>

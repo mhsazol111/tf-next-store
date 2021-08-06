@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
 import { focusClasses } from '../../services/dummyAPI';
 
-const Variants = ({ variants, onChange }) => (
-  <div className="product_variants mt-7 flex items-center">
-    {variants.map((variant) => (
+const Variations = ({ variations, onChange }) => (
+  <div className="product_variants pt-7 flex items-center">
+    {variations.map((variant) => (
       <motion.button
         key={variant.id}
         whileHover={{
@@ -14,14 +14,14 @@ const Variants = ({ variants, onChange }) => (
           onChange(variant.id);
         }}
         className={`group ${focusClasses} ${
-          variant.current ? variant.color : 'bg-white'
+          variant.current ? variant.bgColor : 'bg-white'
         } relative flex flex-col items-center justify-center rounded-lg w-16 h-20 text-sm shadow mr-4`}
       >
-        <span className="block mt-4 pb-1">{variant.size}</span>
-        <span className="block text-xs">{variant.weight}</span>
+        <span className="block mt-4 pb-1">{variant.attributes[0]}</span>
+        <span className="block text-xs">{variant.attributes[1]}</span>
         <div
           className={`absolute top-3 w-2 h-2 rounded-full ${
-            variant.current ? 'bg-white' : variant.color
+            variant.current ? 'bg-white' : variant.bgColor
           }`}
         />
       </motion.button>
@@ -29,4 +29,4 @@ const Variants = ({ variants, onChange }) => (
   </div>
 );
 
-export default Variants;
+export default Variations;
