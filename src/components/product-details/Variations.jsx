@@ -15,7 +15,7 @@ const Variations = ({ variations, onChange }) => (
         }}
         className={`group ${focusClasses} ${
           variant.current ? variant.bgColor : 'bg-white'
-        } relative flex flex-col items-center justify-center rounded-lg w-16 h-20 text-sm shadow mr-4`}
+        } relative flex flex-col items-center justify-center rounded-lg min-w-[4rem] h-20 px-2 text-sm shadow mr-4`}
       >
         <span className="block mt-4 pb-1">{variant.attributes[0]}</span>
         <span className="block text-xs">{variant.attributes[1]}</span>
