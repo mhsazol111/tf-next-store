@@ -216,6 +216,9 @@ const Product = ({ product }) => {
           </div>
         </div>
       </div>
+      <div className="section section__product_details">
+        <div className="container" />
+      </div>
     </Layout>
   );
 };

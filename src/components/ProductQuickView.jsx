@@ -14,6 +14,13 @@ import { focusClasses } from '../services/dummyAPI';
 import AddToCartIcon from './widgets/AddToCartIcon';
 
 const ProductQuickView = ({ status, onClose, product }) => {
+  const { type } = product;
+  const variations = product.variations ? product.variations : null;
+  const price = type === 1 ? product.price : variations[0].price;
+  const salePrice = type === 1 ? product.sale_price : variations[0].sale_price;
+  const stock = type === 1 ? product.stock : variations[0].stock;
+  const productId = type === 1 ? product.id : product.variations[0].id;
+
   const responsive = {
     mobile: {
       breakpoint: { max: 5000, min: 0 },
@@ -87,14 +94,25 @@ const ProductQuickView = ({ status, onClose, product }) => {
                     <span className="text-xs ml-3">(50 reviews)</span>
                   </motion.div>
 
-                  <motion.p
-                    variants={quickViewItemRevealAnimation}
-                    className="text-4xl font-semibold mt-2"
-                  >
-                    <span className="text-theme_green mr-3">
-                      ${product.sale_price ? product.sale_price : product.price}
-                    </span>
-                  </motion.p>
+                  <motion.div variants={quickViewItemRevealAnimation}>
+                    {variations && (
+                      <div className="flex text-xs pt-2 pb-1">
+                        <span
+                          className={`mr-1 block px-[10px] py-[3px] rounded-xl ${variations[0].bgColor}`}
+                        >
+                          {variations[0].attributes[0]}
+                        </span>
+                        <span
+                          className={`block px-[10px] py-[3px] rounded-xl ${variations[0].bgColor}`}
+                        >
+                          {variations[0].attributes[1]}
+                        </span>
+                      </div>
+                    )}
+                    <p className="text-4xl font-semibold mt-2">
+                      <span className="text-theme_green mr-3">${salePrice || price}</span>
+                    </p>
+                  </motion.div>
                   <motion.p variants={quickViewItemRevealAnimation} className="text-sm mt-2">
                     Brand: <strong>Prima</strong>
                   </motion.p>
@@ -102,8 +120,12 @@ const ProductQuickView = ({ status, onClose, product }) => {
                     variants={quickViewItemRevealAnimation}
                     className="flex flex-wrap items-center mt-4"
                   >
-                    <AddToCartIcon product={product} buttonHtml={<CartButton />} />
-                    <span className="text-xs">(Stock: 85 available)</span>
+                    <AddToCartIcon
+                      product={product}
+                      productId={productId}
+                      buttonHtml={<CartButton />}
+                    />
+                    <span className="text-xs">(Stock: {stock} available)</span>
                   </motion.div>
                 </div>
               </div>

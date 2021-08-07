@@ -18,7 +18,11 @@ import AddToCartIcon from './widgets/AddToCartIcon';
 const ProductItem = ({ product, item }) => {
   const { width } = useViewport();
   const { type } = product;
+  const variations = product.variations ? product.variations : null;
+  const price = type === 1 ? product.price : variations[0].price;
+  const salePrice = type === 1 ? product.sale_price : variations[0].sale_price;
   const productId = type === 1 ? product.id : product.variations[0].id;
+
   const variants = {
     initial: { y: 30, opacity: 0 },
     animate: (custom) => ({
@@ -81,22 +85,32 @@ const ProductItem = ({ product, item }) => {
               >
                 {product.title}
               </motion.h4>
-              <motion.p
+              <motion.div
                 variants={{
                   initial: { x: -10, opacity: 0 },
                   animate: { x: 0, opacity: 1, transition: { duration: 0.3 } },
                 }}
-                className="font-semibold"
+                className="flex items-center pb-[3px]"
               >
-                {product.sale_price && (
-                  <span className="text-theme_green mr-3">${product.sale_price}</span>
+                {variations && (
+                  <div className="flex text-xs mr-4">
+                    <span
+                      className={`mr-1 block px-[7px] py-[1px] rounded-xl ${variations[0].bgColor}`}
+                    >
+                      {variations[0].attributes[0]}
+                    </span>
+                    <span className={`block px-[7px] py-[1px] rounded-xl ${variations[0].bgColor}`}>
+                      {variations[0].attributes[1]}
+                    </span>
+                  </div>
                 )}
-                <span
-                  className={product.sale_price ? 'line-through text-red-400' : 'text-theme_green'}
-                >
-                  ${product.price}
-                </span>
-              </motion.p>
+                <p className="font-semibold">
+                  {salePrice && <span className="text-theme_green mr-3">${salePrice}</span>}
+                  <span className={salePrice ? 'line-through text-red-400' : 'text-theme_green'}>
+                    ${price}
+                  </span>
+                </p>
+              </motion.div>
               <motion.div
                 variants={{
                   initial: { x: -10, opacity: 0 },

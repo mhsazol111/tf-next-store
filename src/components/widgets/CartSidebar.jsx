@@ -76,6 +76,7 @@ const CartSidebar = ({ status, onClose, totalItems, cart }) => {
                   <TrashIcon />
                 </span>
               </motion.button>
+
               <motion.h3
                 variants={{
                   initial: { opacity: 0, y: -10 },

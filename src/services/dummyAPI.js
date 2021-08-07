@@ -52,7 +52,7 @@ export const dummyProducts = [
         sale_price: 15,
         stock: 20,
         attributes: ['S', '10gm'],
-        bgColor: 'bg-pink-200',
+        bgColor: 'bg-yellow-200',
       },
       {
         id: '1_v2',
@@ -60,7 +60,7 @@ export const dummyProducts = [
         sale_price: 20,
         stock: 25,
         attributes: ['M', '15gm'],
-        bgColor: 'bg-yellow-200',
+        bgColor: 'bg-pink-200',
       },
       {
         id: '1_v3',
