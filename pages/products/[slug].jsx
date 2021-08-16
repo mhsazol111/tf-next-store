@@ -18,6 +18,7 @@ import ProductGallerySlider from '../../src/components/product-details/ProductGa
 import StarRating from '../../src/components/widgets/StarRating';
 import Variations from '../../src/components/product-details/Variations';
 import CartElements from '../../src/components/product-details/CartElements';
+import ProductAccordion from '../../src/components/product-details/ProductAccordion';
 
 // import styles from '../../src/assets/scss/productDetails.module.scss';
 
@@ -87,10 +88,10 @@ const Product = ({ product }) => {
 
   const handleVariantChange = (id) => {
     const oldVariations = [...variations];
-    const inActiveItems = oldVariations.filter((item) => item.current === true);
+    const activeItems = oldVariations.filter((item) => item.current === true);
 
     /* eslint array-callback-return: "off" */
-    inActiveItems.map((item) => {
+    activeItems.map((item) => {
       const itemIndex = oldVariations.indexOf(item);
       oldVariations[itemIndex] = { ...oldVariations[itemIndex] };
       oldVariations[itemIndex].current = false;
@@ -217,7 +218,9 @@ const Product = ({ product }) => {
         </div>
       </div>
       <div className="section section__product_details">
-        <div className="container" />
+        <div className="container">
+          <ProductAccordion />
+        </div>
       </div>
     </Layout>
   );
