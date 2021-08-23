@@ -1,10 +1,12 @@
+import { AnimateSharedLayout } from 'framer-motion';
 import NextNprogress from 'nextjs-progressbar';
 import Head from 'next/head';
 import { ViewportProvider } from '../src/context/ViewPortContext';
 import { FixedHeaderProvider } from '../src/context/FixedHeaderContext';
+import { CartProvider } from '../src/context/CartContext';
+import Layout from '../src/components/widgets/Layout';
 
 import '../src/assets/scss/globals.scss';
-import { CartProvider } from '../src/context/CartContext';
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -20,7 +22,11 @@ function MyApp({ Component, pageProps }) {
       <ViewportProvider>
         <CartProvider>
           <FixedHeaderProvider>
-            <Component {...pageProps} />
+            <AnimateSharedLayout type="crossfade">
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
+            </AnimateSharedLayout>
           </FixedHeaderProvider>
         </CartProvider>
       </ViewportProvider>

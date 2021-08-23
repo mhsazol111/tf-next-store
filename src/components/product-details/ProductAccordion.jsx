@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion, AnimatePresence, AnimateSharedLayout } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import { focusClasses } from '../../services/dummyAPI';
 
@@ -29,7 +29,6 @@ const ProductAccordion = () => {
   const handleToggle = (item) => {
     const accordions = [...info];
     const index = accordions.indexOf(item);
-    
 
     const inactiveItems = accordions.filter((i) => i.active !== item.active);
     /* eslint array-callback-return: "off" */

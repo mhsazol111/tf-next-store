@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { ease } from '../src/services/animation';
-import Layout from '../src/components/widgets/Layout';
 import InView from '../src/components/widgets/inView';
 import HomeSlider from '../src/components/HomeSlider';
 import FeaturedCategories from '../src/components/FeaturedCategories';
@@ -18,7 +17,7 @@ const Home = () => {
   const buttonClass = `text-xs uppercase font-semibold rounded-full px-4 py-2 min-w-[90px] bg-white ${focusClasses}`;
 
   return (
-    <Layout>
+    <>
       <div className="section section__home_slider bg-white pt-4 pb-4">
         <div className="container">
           <HomeSlider />
@@ -236,7 +235,7 @@ const Home = () => {
           <InteractiveIcon />
         </div>
       </div>
-    </Layout>
+    </>
   );
 };
 export default Home;

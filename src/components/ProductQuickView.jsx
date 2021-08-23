@@ -2,11 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Dialog } from '@headlessui/react';
 import Carousel from 'react-multi-carousel';
 import Image from 'next/image';
-import {
-  overlayAnimation,
-  overlayWrapperReveal,
-  quickViewItemRevealAnimation,
-} from '../services/animation';
+import { overlayWrapperReveal, quickViewItemRevealAnimation } from '../services/animation';
 
 import StarRating from './widgets/StarRating';
 import CloseIcon from '../../public/images/icons/close.svg';
@@ -34,7 +30,6 @@ const ProductQuickView = ({ status, onClose, product }) => {
         <Dialog
           static
           as={motion.div}
-          variants={overlayAnimation}
           initial="initial"
           animate="animate"
           exit="exit"
@@ -46,10 +41,14 @@ const ProductQuickView = ({ status, onClose, product }) => {
 
           <motion.div
             variants={overlayWrapperReveal}
+            layoutId={`from-product-grid-${product.id}`}
             className="quick_view_wrapper max-w-[700px] w-[90%] bg-white rounded-xl shadow-lg overflow-hidden relative"
           >
             <div className="grid grid-cols-2 grid-rows-1 gap-4">
-              <motion.div className="row-span-1 product_gallery_wrapper bg-theme_gray p-4">
+              <motion.div
+                layoutId={`from-product-thumb-${product.id}`}
+                className="row-span-1 product_gallery_wrapper bg-theme_gray p-4 min-h-[342px]"
+              >
                 <Carousel
                   responsive={responsive}
                   infinite
@@ -71,7 +70,10 @@ const ProductQuickView = ({ status, onClose, product }) => {
                 </Carousel>
               </motion.div>
 
-              <div className="row-span-1 flex items-center p-4 relative">
+              <motion.div
+                layoutId={`from-product-info-${product.id}`}
+                className="row-span-1 flex items-center p-4 relative"
+              >
                 <div>
                   <motion.button
                     variants={quickViewItemRevealAnimation}
@@ -128,7 +130,7 @@ const ProductQuickView = ({ status, onClose, product }) => {
                     <span className="text-xs">(Stock: {stock} available)</span>
                   </motion.div>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </motion.div>
         </Dialog>

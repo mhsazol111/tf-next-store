@@ -1,5 +1,4 @@
 import { useState, useContext, useEffect } from 'react';
-// import { motion } from 'framer-motion';
 import { CartContext } from '../../src/context/CartContext';
 import {
   isInCart,
@@ -13,7 +12,6 @@ import {
   removeItemFromCart,
 } from '../../src/services/cart';
 import { getProductBySlug, getProducts } from '../../src/services/dummyAPI';
-import Layout from '../../src/components/widgets/Layout';
 import ProductGallerySlider from '../../src/components/product-details/ProductGallerySlider';
 import StarRating from '../../src/components/widgets/StarRating';
 import Variations from '../../src/components/product-details/Variations';
@@ -173,7 +171,7 @@ const Product = ({ product }) => {
   }, [selectedVariant, globalCart]);
 
   return (
-    <Layout>
+    <>
       <div className="section section__product_intro bg-theme_blue py-10">
         <div className="container">
           <div className="flex flex-wrap">
@@ -222,7 +220,7 @@ const Product = ({ product }) => {
           <ProductAccordion />
         </div>
       </div>
-    </Layout>
+    </>
   );
 };
 

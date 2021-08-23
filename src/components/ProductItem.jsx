@@ -51,15 +51,16 @@ const ProductItem = ({ product, item }) => {
     <>
       <InView variants={variants} custom={item}>
         <Link href={`/products/${product.slug}`} passHref>
-          <a
-            className={`w-full block product_gird__item bg-white px-3 py-5 rounded-xl border-2 border-solid border-transparent ${focusClasses} transition-shadow ease-in-out duration-200 hover:ring-2 hover:ring-theme_green hover:ring-opacity-75`}
+          <motion.a
+            layoutId={`from-product-grid-${product.id}`}
+            className={`w-full block product_gird__item bg-white px-3 py-5 rounded-xl border-2 border-solid border-transparent ${focusClasses} transition-shadow ease-in-out duration-200 hover:ring-2 hover:ring-theme_green hover:ring-opacity-75 overflow-hidden`}
           >
             <motion.div
+              layoutId={`from-product-thumb-${product.id}`}
               variants={{
                 initial: { y: 10, opacity: 0 },
                 animate: { y: 0, opacity: 1, transition: { duration: 0.3 } },
               }}
-              layout
               className="product_image text-center relative"
             >
               {product.sale_percent && (
@@ -75,7 +76,7 @@ const ProductItem = ({ product, item }) => {
               />
             </motion.div>
 
-            <div className="product_info">
+            <motion.div layoutId={`from-product-info-${product.id}`} className="product_info">
               <motion.h4
                 variants={{
                   initial: { x: -10, opacity: 0 },
@@ -164,8 +165,8 @@ const ProductItem = ({ product, item }) => {
                   </span>
                 </button>
               </motion.div>
-            </div>
-          </a>
+            </motion.div>
+          </motion.a>
         </Link>
       </InView>
       <ProductQuickView
