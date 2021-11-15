@@ -50,7 +50,7 @@ const ProductAccordion = () => {
           <button
             type="button"
             onClick={() => handleToggle(item)}
-            className={`${focusClasses} rounded-2xl block border-4 border-black px-6 py-5 mx-auto mb-5 font-semibold text-3xl min-w-[400px] hover:bg-yellow-200 hover:border-yellow-200`}
+            className={`${focusClasses} rounded-2xl block border-4 border-black px-6 py-5 mx-auto font-semibold text-3xl min-w-[400px] hover:bg-yellow-200 hover:border-yellow-200`}
           >
             {item.title}
           </button>
@@ -60,12 +60,12 @@ const ProductAccordion = () => {
                 variants={{
                   initial: { opacity: 0 },
                   animate: { opacity: 1 },
-                  exit: { opacity: 0 },
+                  // exit: { opacity: 0 },
                 }}
                 initial="initial"
                 animate="animate"
                 exit="exit"
-                className="leading-loose max-w-[1000px]"
+                className="leading-loose max-w-[1000px] mt-5 mx-auto"
               >
                 <p className="pb-3">
                   Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt iusto

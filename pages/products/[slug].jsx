@@ -215,7 +215,7 @@ const Product = ({ product }) => {
           </div>
         </div>
       </div>
-      <div className="section section__product_details">
+      <div className="section section__product_details py-20">
         <div className="container">
           <ProductAccordion />
         </div>
